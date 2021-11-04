@@ -8,6 +8,9 @@
       <b-input type="email" value="john@" maxlength="30"> </b-input>
     </b-field>
 
+    <b-button @click="clickMe">Click Me</b-button>
+    <b-slider v-model="value"></b-slider>
+
     <b-field
       label="Username"
       type="is-success"
@@ -31,8 +34,8 @@
 export default {
   data() {
     return {
-      name: 'John Silver'
-    }
-  }
-}
+      name: "Bernarda Brkić",
+    };
+  },
+};
 </script>
