@@ -2,18 +2,23 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
     <HelloWorld msg="Dobrodošli u Vue 2 za PWA kolegij" />
+
+    <Form />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from "./components/HelloWorld.vue";
+import Form from "./components/Form.vue";
+
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    HelloWorld,
+    Form,
+  },
+};
 </script>
 
 <style lang="scss">
