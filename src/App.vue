@@ -10,9 +10,9 @@
           </div>
           <nav>
             <div class="links">
-              <a href="#">Goals</a>
-              <a href="#">About</a>
-              <a href="#">Contacts</a>
+              <a href="#contacts">Contacts</a>
+              <a href="#goals">Goals</a>
+              <a href="#about">About</a>
             </div>
             <div class="menubar">
               <div class="bar bar1"></div>
@@ -33,6 +33,10 @@
           <div class="main-buttons">
             <button>Create An Account</button>
             <button>Sign In</button>
+
+            <!-- <button @click="activeTab = 'Login'" target="_blank">Sign In</button>
+            <component :is="activeTab"/> -->
+            <!-- <Login v-if="activeTab === 'Login'"/> -->
           </div>
 
           <!-- connect with the base -->
@@ -52,6 +56,7 @@
       </div>
     </main>
     <!-- ---------------------- -->
+    <a name="about"></a>
     <div class="who">
       <div class="wrapper">
         <h1>Who we are</h1>
@@ -74,6 +79,7 @@
       </div>
     </div>
     <!-- ---------------------- -->
+    <a name="goals"></a>
     <div class="goals">
       <div class="wrapper">
         <h1>Our goals</h1>
@@ -131,6 +137,7 @@
       </div>
     </div>
     <!-- -------------------- -->
+    <a name="contacts"></a>
     <div class="contacts">
       <div class="wrapper">
         <h1>Contact us</h1>
@@ -200,18 +207,27 @@
         </article>
       </div>
     </div>
+    <!-- add jump to top arrow -->
   </div>
 </template>
 
 <script>
+// import Login from "./Login.vue";
+
 export default {
   name: "App",
-  components: {},
+  components: {
+    // Login,
+  },
+
   data() {
     return {
+      // activeTab: 'Login',
+      // component: "Login",
       scrollPosition: null,
     };
   },
+
   methods: {
     updateScroll() {
       this.scrollPosition = window.scrollY;
