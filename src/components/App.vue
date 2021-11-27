@@ -32,9 +32,11 @@
           <!-- create base -->
           <div class="main-buttons">
             <button>Create An Account</button>
-            <button @click="activeTab = 'Login'" target="_blank">Sign In</button>
+            <button @click="activeTab = 'Login'" target="_blank">
+              Sign In
+            </button>
 
-            <component :is="activeTab"/>
+            <component :is="activeTab" />
             <!-- <Login v-if="activeTab === 'Login'"/> -->
           </div>
 
@@ -221,7 +223,7 @@ export default {
 
   data() {
     return {
-      activeTab: 'Login',
+      activeTab: "Login",
       component: "Login",
       scrollPosition: null,
     };
