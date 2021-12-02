@@ -18,6 +18,7 @@ new Vue({
 
 Vue.config.productionTip = false;
 
+// ANIMATED MENU
 let bar1 = document.querySelector(".bar1");
 let bar2 = document.querySelector(".bar2");
 let bar3 = document.querySelector(".bar3");
