@@ -51,7 +51,7 @@ html {
 }
 .register {
   min-height: 100vh;
-  background-image: url("../images/image2_2.jpg");
+  background-image: url("../images/image2.jpg");
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
