@@ -30,3 +30,15 @@ menubar.addEventListener("click", function () {
   bar3.classList.toggle("barclose3");
   links.classList.toggle("newlinks");
 });
+
+// POPUP LOGIN
+document.querySelector("#login").addEventListener("click", function () {
+  document.querySelector(".popup").classList.add("active");
+  document.querySelector(".dark-bg").classList.add("active");
+});
+document
+  .querySelector(".popup .fa-times-circle")
+  .addEventListener("click", function () {
+    document.querySelector(".popup").classList.remove("active");
+    document.querySelector(".dark-bg").classList.remove("active");
+  });
