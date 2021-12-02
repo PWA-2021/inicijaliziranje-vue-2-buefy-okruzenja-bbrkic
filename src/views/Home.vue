@@ -35,23 +35,39 @@
               <button id="login">Sign In</button>
             </div>
             <div class="popup">
-              <div class="popup-bg-image"></div>
               <i class="fas fa-times-circle"></i>
+              <div class="popup-bg-image">
+                <h4>Welcome back!</h4>
+                <p>Enter your credentials to access your account.</p>
+                <div class="form-element">
+                  <label for="email">Email</label>
+                  <input type="text" placeholder="Enter your email" name="email" required/>
+                </div>
+                <div class="form-element">
+                  <label for="password">Password</label>
+                  <input type="password" placeholder="Enter your password" name="password" required/>
+                </div>
+                <div class="form-element">
+                  <router-link to="/captaincoin" target="self"><button type="submit" class="login">Login</button></router-link>
+                </div>
+              </div>
 
-              <h4>Welcome back!</h4>
-              <p>Enter your credentials to access your account.</p>
-              <div class="form-element">
-                <label for="email">Email</label>
-                <input type="text" placeholder="Enter your email" name="email" required/>
+              <div class="text">
+                <h4>Welcome back!</h4>
+                <p>Enter your credentials to access your account.</p>
+                <div class="form-element">
+                  <label for="email">Email</label>
+                  <input type="text" placeholder="Enter your email" name="email" required/>
+                </div>
+                <div class="form-element">
+                  <label for="password">Password</label>
+                  <input type="password" placeholder="Enter your password" name="password" required/>
+                </div>
+                <div class="form-element">
+                  <router-link to="/captaincoin" target="self"><button type="submit" class="login">Login</button></router-link>
+                </div>
               </div>
-              <div class="form-element">
-                <label for="password">Password</label>
-                <input type="password" placeholder="Enter your password" name="password" required/>
-              </div>
-              <div class="form-element">
-                <router-link to="/captaincoin" target="self"><button type="submit" class="login">Login</button></router-link>
-                
-              </div>
+              
             </div>
           </div>
 
