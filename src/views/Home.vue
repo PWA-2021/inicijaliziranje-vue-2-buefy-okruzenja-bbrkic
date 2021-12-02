@@ -21,21 +21,49 @@
           </nav>
         </div>
       </header>
+      <div class="dark-bg"></div>
       <div class="wrapper">
         <div class="main-center">
           <vue-typed-js :strings="['Captain Coin']">
             <h1 class="typing"></h1>
           </vue-typed-js>
           <h2>Why would you have to be the one doing all the calculations?</h2>
-
           <!-- create base -->
           <div class="main-buttons">
-            <router-link to="/register" target="self"><button id="register">Create An Account</button></router-link>
-            <router-link to="/login" target="self"><button id="login">Sign In</button></router-link>
+            <router-link to="/register" target="self"
+              ><button id="register">Create An Account</button></router-link
+            >
+            <div class="center">
+              <button id="login">Sign In</button>
+            </div>
+            <div class="popup">
+              <div class="popup-bg-image"></div>
+              <i class="fas fa-times-circle"></i>
 
-            <!-- <button @click="activeTab = 'Login'" target="_blank">Sign In</button>
-            <component :is="activeTab"/> -->
-            <!-- <Login v-if="activeTab === 'Login'"/> -->
+              <h4>Welcome back!</h4>
+              <p>Enter your credentials to access your account.</p>
+              <div class="form-element">
+                <label for="email">Email</label>
+                <input
+                  type="text"
+                  placeholder="Enter your email"
+                  name="email"
+                  required
+                />
+              </div>
+              <div class="form-element">
+                <label for="password">Password</label>
+                <input
+                  type="password"
+                  placeholder="Enter your password"
+                  name="password"
+                  required
+                />
+              </div>
+              <div class="form-element">
+                <button type="submit" class="login">Login</button>
+              </div>
+            </div>
           </div>
 
           <!-- connect with the base -->
@@ -46,7 +74,7 @@
               <p>Registered users</p>
             </div>
 
-            <div class="active">
+            <div class="active-users">
               <h3>1234</h3>
               <p>Currently active users</p>
             </div>
@@ -153,10 +181,10 @@
           <!--  add links -->
 
           <!-- social media icons -->
-          <i class="fab fa-facebook"></i>
-          <i class="fab fa-linkedin"></i>
-          <i class="fab fa-twitter"></i>
-          <i class="fab fa-instagram"></i>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
         </article>
 
         <article>
@@ -198,7 +226,6 @@
         </article>
         <article>
           <h2>Other contact information</h2>
-          <!-- fix location word breaking on mobile layout-->
           <p class="location">Vrbik 8,</p>
           <p class="location2">10000 Zagreb</p>
           <p class="phone-number">+012 345 6789</p>
@@ -210,18 +237,12 @@
 </template>
 
 <script>
-// import Login from "./Login.vue";
-
 export default {
   name: "home",
-  components: {
-    // Login,
-  },
+  components: {},
 
   data() {
     return {
-      // activeTab: 'Login',
-      // component: "Login",
       scrollPosition: null,
     };
   },
