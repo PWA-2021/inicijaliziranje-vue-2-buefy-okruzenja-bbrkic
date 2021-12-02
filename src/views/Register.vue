@@ -4,11 +4,7 @@
     <div class="data">
       <router-link to="/" target="self"><h2>CaptainCoin</h2></router-link>
       <h1>Welcome to the club!</h1>
-      <p>
-        If everyone is moving forward together, then success takes care of
-        itself! This club is for members only. But once you join, membership
-        lasts for an eternity.
-      </p>
+      <p>If everyone is moving forward together, then success takes care of itself! This club is for members only. But once you join, membership lasts for an eternity.</p>
     </div>
     <div class="register-information">
       <h1>Registration</h1>
@@ -28,7 +24,7 @@
         <label for="password2">Confirm password:
           <input type="password2" id="password2" name="password2" placeholder="confirm your password"/>
         </label>
-        <button>Create account</button>
+        <router-link to="/data" target="self"><button>Create account</button></router-link>
       </form>
     </div>
   </div>
@@ -125,7 +121,7 @@ html {
 }
 .register-information input:focus {
   color: #5aa897;
-  transition: ease-in 0.5s;
+  transition: ease-in 0.3s;
   outline: none;
   background-color: #ecdbba23;
   border-radius: 20px;
@@ -227,7 +223,7 @@ form button:hover:after {
   }
   .top-layer,
   .register{
-    height: 140vh;
+    height: 15   0vh;
   }
   .register-information h1{
     text-align: center;
