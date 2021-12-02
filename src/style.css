@@ -164,21 +164,47 @@ header nav a:hover {
   background-color: #ecdbbaad;
   transition: 0.5s;
 }
+.popup-bg-image {
+  width: 50%;
+  background-image: url("images/image3.jpg");
+  background-size: cover;
+  background-position: 60%;
+  float: left;
+  color: transparent;
+  border-radius: 15px 0 0 15px;
+  padding: 5%;
+}
+.popup-bg-image input,
+.popup-bg-image button{
+  background-color: transparent !important;
+  border: 1px solid transparent !important; 
+}
+.text{
+  float: left;
+  width: 50%;
+  padding: 5%;
+}
+.popup-bg-image h4, 
+.popup-bg-image p,
+.popup-bg-image label,
+.popup-bg-image input::placeholder,
+.popup-bg-image button{
+  color: transparent !important;
+}
 .popup {
   position: fixed;
   top: -150%;
   left: 50%;
   opacity: 0;
   transform: translate(-50%, -50%) scale(1.25);
-  width: 50%;
+  width: 60%;
   max-width: 100%;
-  padding: 5%;
   background-color: #e7e7e7;
-  border: 1px solid #346751;
-  box-shadow: #9292924f 0px -5px 50px 20px;
+  box-shadow: #92929277 0px -5px 50px 20px;
   border-radius: 15px;
-  transition: top 0ms ease-in-out 200ms, opacity 200ms ease-in-out 0ms,
-    transform 200ms ease-in-out 20ms;
+  transition: top 0ms ease-in-out 200ms, 
+              opacity 200ms ease-in-out 0ms,
+              transform 200ms ease-in-out 20ms;
 }
 .dark-bg {
   width: 100%;
@@ -211,10 +237,10 @@ header nav a:hover {
 }
 .popup i {
   position: absolute;
-  top: 8%;
+  top: 5%;
   right: 5%;
   font-size: 25px;
-  color: #346751;
+  color: #365473;
   cursor: pointer;
   z-index: 20;
 }
@@ -223,7 +249,7 @@ header nav a:hover {
   font-size: 30px;
   font-weight: bold;
   text-transform: uppercase;
-  color: #346751;
+  color: #365473;
 }
 .form-element {
   margin: 15px 0;
@@ -235,7 +261,8 @@ header nav a:hover {
   outline: none;
 }
 .popup input:focus {
-  box-shadow: #3467513f 0px 8px 14px;
+  box-shadow: #36557352 0px 8px 14px;
+  background-color: #3655735e;
   transition: 0.4s;
 }
 .popup p {
@@ -244,6 +271,9 @@ header nav a:hover {
 }
 .popup input::placeholder {
   color: #92929277;
+}
+.popup input:focus::placeholder {
+  color: #e7e7e7;
 }
 .popup input::placeholder::before {
   /* font-family: "Font Awesome 5 Free";
@@ -259,11 +289,11 @@ header nav a:hover {
 .popup label {
   text-align: left;
   padding-bottom: 8px;
-  color: #346751;
+  color: #365473;
   font-weight: bold;
 }
 .popup button {
-  background-color: #346751;
+  background-color: #365473;
   width: 100%;
   color: #e7e7e7;
   padding: 10px 0;
@@ -673,7 +703,7 @@ form input:focus,
     padding: 12px 0;
   }
   .popup{
-    width: 70%;
+    width: 80%;
   }
   .popup button{
     width: 100%;
@@ -771,7 +801,7 @@ form input:focus,
     margin-right: 0;
   }
   .popup{
-    width: 70%;
+    width: 90%;
   }
   .popup button{
     width: 100%;
@@ -795,5 +825,24 @@ form input:focus,
   .main-buttons button {
     width: 100%;
     margin: 10px 0;
+  }
+  .popup-bg-image{
+    display: none;
+  }
+  .text{
+    width: 100%;
+  }
+  .popup h4, 
+  .popup label,
+  .popup i{
+    color: #346751;
+  }
+  .popup button{
+    background-color: #346751;
+  }
+  .popup input:focus{
+    background-color: #34675133;
+    box-shadow: #34675133 0px 8px 14px;
+    border-color: #34675133;
   }
 }
