@@ -48,8 +48,7 @@
                   <input type="password" placeholder="Enter your password" name="password" id="nonselectable" required/>
                 </div>
                 <div class="form-element">
-                  <!-- fix cursor bug -->
-                  <router-link to="/captaincoin" target="self" disabled><button type="submit" class="login" id="nonselectable" disabled>Login</button></router-link>
+                  <button type="submit" class="login" id="nonselectable" disabled>Login</button>
                 </div>
               </div>
 
