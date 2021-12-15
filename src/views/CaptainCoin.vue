@@ -8,11 +8,16 @@
       <a href="#">Transport</a>
       <a href="#">Drinks</a>
     </nav>
-    <!-- <div class="menubar">
+    <div class="links">
+      <a href="#contacts">Contacts</a>
+      <a href="#goals">Goals</a>
+      <a href="#about">About</a>
+    </div>
+    <div class="menubar">
       <div class="bar bar1"></div>
       <div class="bar bar2"></div>
       <div class="bar bar3"></div>
-    </div> -->
+    </div>
     <div class="wrapper-content">
       <div class="horizontal-navbar">
         <a href="#">CaptainCoin</a>
@@ -20,10 +25,38 @@
       </div>
       <div class="frames">
         <div class="top-buttons">
-          <button>Add expense</button>
+          <button id="pop-expenses">Add expense</button>
           <button>Add notes</button>
           <button id="calculator">Calculator</button>
           <button>Calendar</button>
+        </div>
+
+        <div class="popup-expenses">
+          <i class="fas fa-times-circle"></i>
+          <h4>Welcome back!</h4>
+          <p>Enter your credentials to access your account.</p>
+          <div class="form-element">
+            <label for="day">Day</label>
+            <input type="text" placeholder="Enter day" name="day" required />
+          </div>
+          <div class="form-element">
+            <label for="activity">Activity</label>
+            <input
+              type="text"
+              placeholder="Enter activity"
+              name="activity"
+              required
+            />
+          </div>
+          <div class="form-element">
+            <label for="price">Price</label>
+            <input
+              type="number"
+              placeholder="Enter price"
+              name="price"
+              required
+            />
+          </div>
         </div>
         <div class="summary">
           <section>
@@ -107,17 +140,17 @@
           <section>
             <h3>To-do list</h3>
             <p id="subheading">Overview of planned activities</p>
-            
+
             <ul class="expenses">
               <li>
-                <input type="checkbox" class="element checkbox">
+                <input type="checkbox" class="element checkbox" />
                 <span class="element id">Id</span>
                 <span class="element day">Day in the week</span>
                 <span class="element activity">Activity description</span>
                 <span class="element price">Price</span>
               </li>
               <li v-for="expense in expenses" :key="expense.ID">
-                <input type="checkbox" class="element checkbox">
+                <input type="checkbox" class="element checkbox" />
                 <span class="element id">{{ expense.ID }}</span>
                 <span class="element day">{{ expense.day }}</span>
                 <span class="element activity">{{ expense.activity }}</span>
@@ -126,6 +159,14 @@
             </ul>
             <button>Delete activity</button>
           </section>
+
+          <div class="calculator">
+            <div class="result">bqoiavi</div>
+            <div class="clear">C</div>
+            <div class="">-/+</div>
+            <div class="">%</div>
+            <div class="">&divide;</div>
+          </div>
         </div>
       </div>
     </div>
@@ -148,6 +189,30 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.menubar {
+  width: 40px;
+  height: 40px;
+  display: none;
+  cursor: pointer;
+}
+.bar {
+  border-radius: 5px;
+}
+.links {
+  display: none;
+  width: 100%;
+}
+.calculator {
+  background-color: #fbb040;
+  position: fixed;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(50px, auto);
+}
+.result {
+  grid-column: 1/5;
+}
 #captaincoin {
   background-color: #e7e7e7;
   height: 100vh;
@@ -180,50 +245,116 @@ export default {
   border-left: 4px solid #346751;
   transition: 0.2s;
 }
-// .menubar {
-//   width: 25px;
-//   height: 30px;
-//   display: block;
-//   position: absolute;
-//   left: 0;
-//   margin: 10px 20px;
-// }
-// .bar {
-//   width: 100%;
-//   height: 3px;
-//   background-color: #ecdbba;
-//   border-radius: 10px;
-//   margin-bottom: 5px;
-//   width: 100%;
-//   box-shadow: 2px 2px 6px #000000be;
-// }
-// .bar1,
-// .bar2,
-// .bar3 {
-//   transition: 0.3s;
-// }
-// .barclose1 {
-//   width: 100%;
-//   position: absolute;
-//   top: 10px;
-//   transform: rotate(45deg);
-// }
-// .barclose2 {
-//   width: 100%;
-//   position: absolute;
-//   transform: scaleX(0);
-//   transform-origin: right;
-// }
-// .barclose3 {
-//   width: 100%;
-//   position: absolute;
-//   top: 10px;
-//   transform: rotate(-45deg);
-// }
-// .newlinks {
-//   transform: translate(0, 0);
-//   display: block;
-// }
+
+.popup-expenses {
+  position: fixed;
+  top: -150%;
+  left: 50%;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(1.25);
+  width: 60%;
+  max-width: 100%;
+  background-color: #e7e7e7;
+  box-shadow: #92929277 0px -5px 50px 20px;
+  border-radius: 15px;
+  transition: top 0ms ease-in-out 200ms, opacity 200ms ease-in-out 0ms,
+    transform 200ms ease-in-out 20ms;
+}
+.dark-bg {
+  width: 100%;
+  background: #161616;
+  background: -webkit-linear-gradient(to bottom, #161616, #333);
+  background: linear-gradient(to bottom, #161616, #333);
+  height: 100vh;
+  opacity: 0;
+  backdrop-filter: blur(5px);
+  position: fixed;
+  top: -150%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.25);
+  transition: top 0ms ease-in-out 200ms, opacity 200ms ease-in-out 0ms,
+    transform 200ms ease-in-out 20ms;
+}
+.popup-expenses.active {
+  top: 50%;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  transition: top 0ms ease-in-out 0ms, opacity 200ms ease-in-out 0ms,
+    transform 200ms ease-in-out 20ms;
+}
+.dark-bg.active {
+  top: 50%;
+  opacity: 0.9;
+  transform: translate(-50%, -50%) scale(1);
+  transition: top 0ms ease-in-out 0ms, opacity 200ms ease-in-out 0ms,
+    transform 200ms ease-in-out 20ms;
+}
+.popup-expenses i {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  font-size: 25px;
+  color: #365473;
+  cursor: pointer;
+  z-index: 20;
+}
+.popup-expenses h4 {
+  margin-top: 20px;
+  font-size: 30px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #365473;
+}
+.form-element {
+  margin: 15px 0;
+}
+.popup-expenses input {
+  padding: 10px;
+  border: 1px solid #92929277;
+  border-radius: 8px;
+  outline: none;
+}
+.popup-expenses input:focus {
+  box-shadow: #36557352 0px 8px 14px;
+  background-color: #3655735e;
+  transition: 0.4s;
+}
+.popup-expenses p {
+  color: #929292;
+  padding-bottom: 30px;
+}
+.popup-expenses input::placeholder {
+  color: #92929277;
+}
+.popup-expenses input:focus::placeholder {
+  color: #e7e7e7;
+}
+/* .popup-expenses input::placeholder::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f2b6";
+} */
+.popup-expenses input[type="text"],
+.popup-expenses input[type="password"],
+.popup-expenses label {
+  display: block;
+  width: 100%;
+}
+.popup-expenses label {
+  text-align: left;
+  padding-bottom: 8px;
+  color: #365473;
+  font-weight: bold;
+}
+.popup-expenses button {
+  background-color: #365473;
+  width: 100%;
+  color: #e7e7e7;
+  padding: 10px 0;
+  border-radius: 8px;
+  margin: 30px 0 0 0;
+}
+
 .horizontal-navbar {
   position: fixed;
   z-index: 1;
@@ -448,100 +579,97 @@ hr {
   border-radius: 10px;
   text-transform: uppercase;
 }
-.expenses{
+.expenses {
   margin-top: 20px;
 }
-.expenses li{
+.expenses li {
   padding: 5px 10px;
   overflow: hidden;
 }
-.expenses li:not(:first-child){
+.expenses li:not(:first-child) {
   border-bottom: 1px solid #e7e7e7;
 }
-.expenses li:first-child{
+.expenses li:first-child {
   background-color: #34675146;
   font-weight: bold;
   text-transform: uppercase;
   border-radius: 5px;
 }
-.expenses li:first-child span{
+.expenses li:first-child span {
   color: #346751;
 }
-.expenses .element{
+.expenses .element {
   float: left;
 }
-.expenses li input, 
-.expenses .element .id{
+.expenses li input,
+.expenses .element .id {
   width: 20px;
   float: left;
 }
 .expenses .element:not(:first-child),
-.expenses li:first-child span{
+.expenses li:first-child span {
   width: 24%;
   float: left;
 }
-.price{
-}
-.expenses input{
+.expenses input {
   all: unset;
   border: 1px solid #e7e7e7;
   width: 10px;
   height: 20px;
   border-radius: 5px;
 }
-.id{
+.id {
   text-indent: 10px;
 }
 @media screen and (max-width: 992px) {
-  // .menubar {
-  //   width: 25px;
-  //   height: 30px;
-  //   display: block;
-  //   position: absolute;
-  //   z-index: 1;
-  //   top: 0;
-  // }
-  // .bar {
-  //   width: 100%;
-  //   height: 3px;
-  //   border-radius: 10px;
-  //   width: 100%;
-  //   box-shadow: 2px 2px 6px #000000be;
-  // }
-  // .bar1,
-  // .bar2,
-  // .bar3 {
-  //   transition: 0.3s;
-  // }
-  // .barclose1 {
-  //   width: 100%;
-  //   position: absolute;
-  //   top: 10px;
-  //   transform: rotate(45deg);
-  // }
-  // .barclose2 {
-  //   width: 100%;
-  //   position: absolute;
-  //   transform: scaleX(0);
-  //   transform-origin: right;
-  // }
-  // .barclose3 {
-  //   width: 100%;
-  //   position: absolute;
-  //   top: 10px;
-  //   transform: rotate(-45deg);
-  // }
-  // .newlinks {
-  //   transform: translate(0, 0);
-  //   display: block;
-  // }
-  // .links {
-  //   width: 100%;
-  //   transform: translate(-100%, 0);
-  //   transition: 0.3s;
-  //   background-color: #333;
-  //   top: 48px;
-  //   display: none;
-  // }
+  .menubar {
+    width: 25px;
+    height: 30px;
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 5px;
+    margin: 18px 20px;
+    z-index: 10;
+  }
+  .bar {
+    width: 100%;
+    height: 3px;
+    background-color: #c84b31;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    width: 100%;
+    box-shadow: 2px 2px 6px #000000be;
+  }
+  .bar1,
+  .bar2,
+  .bar3 {
+    transition: 0.3s;
+  }
+  .barclose1 {
+    top: 10px;
+    transform: rotate(45deg);
+  }
+  .barclose1,
+  .barclose2,
+  .barclose3 {
+    width: 100%;
+    position: absolute;
+  }
+  .barclose2 {
+    transform: scaleX(0);
+    transform-origin: right;
+  }
+  .barclose3 {
+    top: 10px;
+    transform: rotate(-45deg);
+  }
+  .newlinks {
+    transform: translate(0, 0);
+    display: block;
+  }
+  .vertical-navbar {
+    display: none;
+  }
 }
 </style>
