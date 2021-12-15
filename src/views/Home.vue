@@ -37,8 +37,8 @@
             <div class="popup">
               <i class="fas fa-times-circle"></i>
               <div class="popup-bg-image">
-                <h4 id="nonselectable">Welcome back!</h4>
-                <p id="nonselectable">Enter your credentials to access your account.</p>
+                <h4>Welcome back!</h4>
+                <p>Enter your credentials to access your account.</p>
                 <div class="form-element">
                   <label for="email" id="nonselectable">Email</label>
                   <input type="text" placeholder="Enter your email" name="email" id="nonselectable" required/>
@@ -87,7 +87,7 @@
         </div>
       </div>
     </main>
-    <!-- ---------------------- -->
+    <!-- WHO SECTION -->
     <a name="about"></a>
     <div class="who">
       <div class="wrapper">
@@ -101,7 +101,7 @@
         <p>We are a small team whose main idea is to make budgeting life easier for you. We offer possibility of adding up income, categorizing expenses, and creating a rough outline for a budget, setting a specific financial goal. The stage of life you’re in usually determines what type of goals you wish to achieve.</p>
       </div>
     </div>
-    <!-- ---------------------- -->
+    <!-- GOALS SECTION -->
     <a name="goals"></a>
     <div class="goals">
       <div class="wrapper">
@@ -136,7 +136,7 @@
         </div>
       </div>
     </div>
-    <!-- -------------------- -->
+    <!-- CONTACTS SECTION -->
     <a name="contacts"></a>
     <div class="contacts">
       <div class="wrapper">
@@ -172,15 +172,12 @@
             <b-field label="MESSAGE">
               <b-input maxlength="500" type="textarea"></b-input>
             </b-field>
-            <b-field>
-              <b-checkbox>I accept the terms of service</b-checkbox>
-            </b-field>
             <b-button type="is-success">SUBMIT</b-button>
           </form>
         </article>
       </div>
     </div>
-    <!-- -------------------------------- -->
+    <!-- MAP SECTION-->
     <div class="map">
       <div class="wrapper">
         <article>
