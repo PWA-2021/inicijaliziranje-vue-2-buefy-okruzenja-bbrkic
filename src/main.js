@@ -44,22 +44,37 @@ document
   .addEventListener("click", function () {
     document.querySelector(".popup").classList.remove("active");
     document.querySelector(".dark-bg").classList.remove("active");
+  });
+
+// POPUP EXPENSES
+document.querySelector("#pop-expenses").addEventListener("click", function () {
+  document.querySelector(".popup-expenses").classList.add("active");
 });
+document
+  .querySelector(".popup-expenses .fa-times-circle")
+  .addEventListener("click", function () {
+    document.querySelector(".popup-expenses").classList.remove("active");
+  });
 
 // SCROLL TO TOP
 const toTop = document.querySelector(".to-top");
 
-//POPUP CALCULATOR
-document.querySelector("#calculator").addEventListener("click", function () {
-  document.querySelector(".calculator").classList.add("active");
-  document.querySelector(".dark-bg").classList.add("active");
-});
-document
-  .querySelector(".calculator .fa-times-circle")
-  .addEventListener("click", function () {
-    document.querySelector(".calculator").classList.remove("active");
-    document.querySelector(".dark-bg").classList.remove("active");
-});
+function handleFormSubmit(event) {
+  event.preventDefault();
+
+  const data = new FormData(event.target);
+
+  const formJSON = Object.fromEntries(data.entries());
+
+  // for multi-selects, we need special handling
+  formJSON.snacks = data.getAll("snacks");
+
+  const results = document.querySelector(".results pre");
+  results.innerText = JSON.stringify(formJSON, null, 2);
+}
+
+const form = document.querySelector(".contact-form");
+form.addEventListener("submit", handleFormSubmit);
 
 window.addEventListener("scroll", () => {
   if (window.pageYOffset > 100) {
@@ -67,4 +82,4 @@ window.addEventListener("scroll", () => {
   } else {
     toTop.classList.remove("active");
   }
-})
+});
