@@ -24,12 +24,14 @@ let bar2 = document.querySelector(".bar2");
 let bar3 = document.querySelector(".bar3");
 let menubar = document.querySelector(".menubar");
 let links = document.querySelector(".links");
+let vertical_navbar = document.querySelector(".vertical-navbar");
 
 menubar.addEventListener("click", function () {
   bar1.classList.toggle("barclose1");
   bar2.classList.toggle("barclose2");
   bar3.classList.toggle("barclose3");
   links.classList.toggle("newlinks");
+  vertical_navbar.classList.toggle("newlinks");
 });
 
 // POPUP LOGIN
@@ -47,10 +49,22 @@ document
 // SCROLL TO TOP
 const toTop = document.querySelector(".to-top");
 
+//POPUP CALCULATOR
+document.querySelector("#calculator").addEventListener("click", function () {
+  document.querySelector(".calculator").classList.add("active");
+  document.querySelector(".dark-bg").classList.add("active");
+});
+document
+  .querySelector(".calculator .fa-times-circle")
+  .addEventListener("click", function () {
+    document.querySelector(".calculator").classList.remove("active");
+    document.querySelector(".dark-bg").classList.remove("active");
+});
+
 window.addEventListener("scroll", () => {
   if (window.pageYOffset > 100) {
     toTop.classList.add("active");
-  } else{
+  } else {
     toTop.classList.remove("active");
   }
 })
