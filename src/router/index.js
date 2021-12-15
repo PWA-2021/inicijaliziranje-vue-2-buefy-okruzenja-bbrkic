@@ -4,6 +4,7 @@ import Home from "../views/Home.vue";
 // import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
 import Data from "../views/Data.vue";
+import CaptainCoin from "../views/CaptainCoin.vue";
 
 Vue.use(VueRouter);
 
@@ -22,6 +23,11 @@ const routes = [
     path: "/data",
     name: "Data",
     component: Data,
+  },
+  {
+    path: "/captaincoin",
+    name: "CaptainCoin",
+    component: CaptainCoin,
   },
 ];
 
