@@ -9,9 +9,11 @@
       <a href="#">Drinks</a>
     </nav>
     <div class="links">
-      <a href="#contacts">Contacts</a>
-      <a href="#goals">Goals</a>
-      <a href="#about">About</a>
+      <a href="#">Home</a>
+      <a href="#">Monthly expenses</a>
+      <a href="#">Food</a>
+      <a href="#">Transport</a>
+      <a href="#">Drinks</a>
     </div>
     <div class="menubar">
       <div class="bar bar1"></div>
@@ -160,6 +162,28 @@
             <button>Delete activity</button>
           </section>
         </div>
+        <!-- <div class="calculator">
+          <div class="display">{{ current || "0" }}</div>
+          <div @click="clear" class="btn">C</div>
+          <div @click="sign" class="btn">+/-</div>
+          <div @click="percent" class="btn">%</div>
+          <div @click="divide" class="btn operator">÷</div>
+          <div @click="append('7')" class="btn">7</div>
+          <div @click="append('8')" class="btn">8</div>
+          <div @click="append('9')" class="btn">9</div>
+          <div @click="times" class="btn operator">x</div>
+          <div @click="append('4')" class="btn">4</div>
+          <div @click="append('5')" class="btn">5</div>
+          <div @click="append('6')" class="btn">6</div>
+          <div @click="minus" class="btn operator">-</div>
+          <div @click="append('1')" class="btn">1</div>
+          <div @click="append('2')" class="btn">2</div>
+          <div @click="append('3')" class="btn">3</div>
+          <div @click="add" class="btn operator">+</div>
+          <div @click="append('0')" class="btn zero">0</div>
+          <div @click="dot" class="btn">.</div>
+          <div @click="equal" class="btn operator">=</div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -181,6 +205,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+#captaincoin {
+  background-color: #e7e7e7;
+  height: 100vh;
+  color: #161616;
+}
 .menubar {
   width: 40px;
   height: 40px;
@@ -193,22 +222,6 @@ export default {
 .links {
   display: none;
   width: 100%;
-}
-.calculator {
-  background-color: #fbb040;
-  position: fixed;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: minmax(50px, auto);
-}
-.result {
-  grid-column: 1/5;
-}
-#captaincoin {
-  background-color: #e7e7e7;
-  height: 100vh;
-  color: #161616;
 }
 .vertical-navbar {
   height: 100%;
@@ -321,11 +334,6 @@ export default {
 .popup-expenses input:focus::placeholder {
   color: #e7e7e7;
 }
-/* .popup-expenses input::placeholder::before {
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900;
-  content: "\f2b6";
-} */
 .popup-expenses input[type="text"],
 .popup-expenses input[type="password"],
 .popup-expenses label {
@@ -570,6 +578,7 @@ hr {
   text-align: center;
   border-radius: 10px;
   text-transform: uppercase;
+  cursor: pointer;
 }
 .expenses {
   margin-top: 20px;
@@ -613,16 +622,101 @@ hr {
 .id {
   text-indent: 10px;
 }
+// .calculator {
+//   margin: 0 auto;
+//   width: 400px;
+//   font-size: 40px;
+//   display: grid;
+//   grid-template-columns: repeat(4, 1fr);
+//   grid-auto-rows: minmax(50px, auto);
+//   position: relative;
+//   z-index: 10;
+// }
+// .display {
+//   grid-column: 1 / 5;
+//   background-color: #333;
+//   color: white;
+// }
+// .zero {
+//   grid-column: 1 / 3;
+// }
+// .btn {
+//   background-color: #F2F2F2;
+//   border: 1px solid #999;
+// }
+// .operator {
+//   background-color: orange;
+//   color: white;
+// }
 @media screen and (max-width: 992px) {
+  .newlinks a {
+    color: #ecdbba;
+    text-transform: uppercase;
+    width: 100%;
+    display: block;
+    font-size: 20px;
+    text-indent: 4%;
+    padding: 5px 0;
+  }
+  .links {
+    width: 100%;
+    transform: translate(-100%, 0);
+    transition: 0.3s;
+    background-color: #333;
+    top: 48px;
+    display: none;
+  }
+  .links a {
+    position: relative;
+    z-index: 1;
+  }
+  .links a::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    background-color: #c84b31;
+    transform: scaleX(0);
+    transition: 0.3s;
+    transform-origin: left;
+    z-index: -1;
+  }
+  .links a:hover::after {
+    transform: scaleX(1);
+  }
+  .horizontal-navbar {
+    left: 0;
+    top: 0;
+    background-color: #346751;
+    height: 65px;
+  }
+  .horizontal-navbar i {
+    display: none;
+  }
+  .horizontal-navbar a {
+    text-shadow: 2px 2px 6px #000000be;
+    padding: 0 0 5px 3%;
+    display: inline-block;
+    color: #ecdbba;
+    font-size: 40px;
+  }
+  .newlinks {
+    position: fixed;
+    z-index: 2;
+    transform: translate(0, 0);
+    display: block;
+    top: 65px;
+  }
   .menubar {
     width: 25px;
     height: 30px;
     display: block;
-    position: absolute;
+    position: fixed;
     right: 0;
-    top: 5px;
     margin: 18px 20px;
-    z-index: 10;
+    z-index: 2;
   }
   .bar {
     width: 100%;
@@ -656,12 +750,42 @@ hr {
     top: 10px;
     transform: rotate(-45deg);
   }
-  .newlinks {
-    transform: translate(0, 0);
-    display: block;
-  }
   .vertical-navbar {
     display: none;
+  }
+  .wrapper-content {
+    max-width: 90%;
+    width: 100%;
+    margin: 0 auto;
+    overflow: initial;
+    min-height: 100%;
+  }
+  #captaincoin {
+    overflow: hidden;
+    height: auto;
+    padding-bottom: 100px;
+  }
+  .summary section,
+  .summary-chart section,
+  .recent section,
+  .to-do section {
+    width: 100%;
+  }
+  .frames {
+    margin-top: 30px;
+  }
+  .summary-chart section {
+    margin-top: 20px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .summary section {
+    min-height: auto;
+  }
+  .summary article:first-child,
+  .summary article:last-child {
+    width: 100%;
+    display: block;
   }
 }
 </style>
