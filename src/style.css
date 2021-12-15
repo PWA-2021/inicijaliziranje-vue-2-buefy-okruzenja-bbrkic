@@ -104,9 +104,6 @@ header nav a:hover {
   cursor: pointer;
 }
 .bar {
-  width: 100%;
-  height: 3px;
-  background-color: #c84b31;
   border-radius: 5px;
 }
 .links {
@@ -176,10 +173,7 @@ header nav a:hover {
 }
 .popup-bg-image input,
 .popup-bg-image button{
-  background-color: transparent !important;
-  border: 1px solid transparent !important; 
-  pointer-events: none !important;
-  cursor: none !important;
+ visibility: hidden;
 }
 .text{
   float: left;
@@ -191,15 +185,7 @@ header nav a:hover {
 .popup-bg-image label,
 .popup-bg-image input::placeholder,
 .popup-bg-image button{
-  color: transparent !important;
-}
-#nonselectable{
-  -webkit-touch-callout: none; 
-  -webkit-user-select: none;
-  -khtml-user-select: none; 
-  -moz-user-select: none; 
-  -ms-user-select: none; 
-  user-select: none;                              
+  visibility: hidden;
 }
 .popup {
   position: fixed;
@@ -677,21 +663,21 @@ p::before {
   .bar3 {
     transition: 0.3s;
   }
-  .barclose1 {
-    width: 100%;
-    position: absolute;
+  .barclose1{
     top: 10px;
     transform: rotate(45deg);
   }
-  .barclose2 {
+  .barclose1, 
+  .barclose2,
+  .barclose3 {
     width: 100%;
     position: absolute;
+  }
+  .barclose2 {
     transform: scaleX(0);
     transform-origin: right;
   }
   .barclose3 {
-    width: 100%;
-    position: absolute;
     top: 10px;
     transform: rotate(-45deg);
   }
