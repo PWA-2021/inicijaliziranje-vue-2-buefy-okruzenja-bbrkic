@@ -1,0 +1,22 @@
+{
+  "expenses": [
+    {
+      "ID": 1,
+      "day": "Monday",
+      "activity": "Buy new jeans",
+      "price": 20
+    },
+    {
+      "ID": 2,
+      "day": "Friday",
+      "activity": "Go on a party in a club",
+      "price": 50
+    },
+    {
+      "ID": 3,
+      "day": "Wednesday",
+      "activity": "Pay mortgage",
+      "price": 1000
+    }
+  ]
+}
