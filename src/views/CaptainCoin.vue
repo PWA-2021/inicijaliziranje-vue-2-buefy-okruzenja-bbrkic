@@ -159,14 +159,6 @@
             </ul>
             <button>Delete activity</button>
           </section>
-
-          <div class="calculator">
-            <div class="result">bqoiavi</div>
-            <div class="clear">C</div>
-            <div class="">-/+</div>
-            <div class="">%</div>
-            <div class="">&divide;</div>
-          </div>
         </div>
       </div>
     </div>
