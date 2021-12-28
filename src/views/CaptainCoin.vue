@@ -145,7 +145,7 @@
 
         <!-- CALCULATOR -->
         <div class="calculator" v-bind:class="{ active: isActive }">
-          <i class="fas fa-times-circle"></i>
+          <i class="fas fa-times-circle" v-bind:class="{ active: isActive }" @click="closeButton"></i>
           <div class="result">{{ current || "0" }}</div>
           <div class="calculator-row">
             <div @click="clear" class="btn">C</div>
@@ -203,6 +203,12 @@ export default {
       document.querySelector(".dark-bg").classList.add("active");
       isActive = !isActive;
     },
+    closeButton: function () {
+      console.log("clicked!!");
+      document.querySelector(".calculator").classList.remove("active");
+      document.querySelector(".dark-bg").classList.remove("active");
+      isActive = false;
+    }
   },
   mounted: function () {
     console.log(this.expenses);
