@@ -145,7 +145,11 @@
 
         <!-- CALCULATOR -->
         <div class="calculator" v-bind:class="{ active: isActive }">
-          <i class="fas fa-times-circle" v-bind:class="{ active: isActive }" @click="closeButton"></i>
+          <i
+            class="fas fa-times-circle"
+            v-bind:class="{ active: isActive }"
+            @click="closeButton"
+          ></i>
           <div class="result">{{ current || "0" }}</div>
           <div class="calculator-row">
             <div @click="clear" class="btn">C</div>
@@ -193,7 +197,13 @@ export default {
   data: function () {
     return {
       expenses: json.expenses,
+
+      // calculator
       isActive: false,
+      previous: null,
+      current: "",
+      operator: null,
+      operatorClicked: false,
     };
   },
   methods: {
@@ -208,10 +218,61 @@ export default {
       document.querySelector(".calculator").classList.remove("active");
       document.querySelector(".dark-bg").classList.remove("active");
       isActive = false;
-    }
-  },
-  mounted: function () {
-    console.log(this.expenses);
+    },
+    clear() {
+      this.current = "";
+    },
+    sign() {
+      this.current =
+        this.current.charAt(0) === "-"
+          ? this.current.slice(1)
+          : `-${this.current}`;
+    },
+    percent() {
+      this.current = `${parseFloat(this.current) / 100}`;
+    },
+    append(number) {
+      if (this.operatorClicked) {
+        this.current = "";
+        this.operatorClicked = false;
+      }
+      this.current = `${this.current}${number}`;
+    },
+    dot() {
+      if (this.current.indexOf(".") === -1) {
+        this.append(".");
+      }
+    },
+    setPrevious() {
+      this.previous = this.current;
+      this.operatorClicked = true;
+    },
+    divide() {
+      this.operator = (a, b) => a / b;
+      this.setPrevious();
+    },
+    times() {
+      this.operator = (a, b) => a * b;
+      this.setPrevious();
+    },
+    minus() {
+      this.operator = (a, b) => a - b;
+      this.setPrevious();
+    },
+    add() {
+      this.operator = (a, b) => a + b;
+      this.setPrevious();
+    },
+    equal() {
+      this.current = `${this.operator(
+        parseFloat(this.current),
+        parseFloat(this.previous)
+      )}`;
+      this.previous = null;
+    },
+    mounted: function () {
+      console.log(this.expenses);
+    },
   },
 };
 </script>
@@ -574,6 +635,7 @@ hr {
   height: 70px;
   margin: 10px;
   padding-top: 15px;
+  cursor: pointer;
 }
 .operator {
   background-color: #c84b31;
