@@ -57,8 +57,6 @@ window.addEventListener("scroll", () => {
   }
 });
 
-// POPUP CALCULATOR
-
 // DATA
 function handleFormSubmit(event) {
   event.preventDefault();
