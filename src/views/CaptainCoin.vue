@@ -1,5 +1,6 @@
 <template>
   <div id="captaincoin">
+    <!-- VERTICAL NAVBAR -->
     <nav class="vertical-navbar">
       <a href="#">CaptainCoin</a>
       <a href="#">Home</a>
@@ -15,50 +16,29 @@
       <a href="#">Transport</a>
       <a href="#">Drinks</a>
     </div>
+
+    <!-- RESPONSIVE HAMBURGER -->
     <div class="menubar">
       <div class="bar bar1"></div>
       <div class="bar bar2"></div>
       <div class="bar bar3"></div>
     </div>
+
+    <!-- HORIZONTAL NAVBAR -->
     <div class="wrapper-content">
       <div class="horizontal-navbar">
         <a href="#">CaptainCoin</a>
         <i class="fas fa-user-circle"></i>
       </div>
+
+      <!-- DASHBOARD -->
       <div class="frames">
+        <!-- TOP BUTTONS -->
         <div class="top-buttons">
           <button id="pop-expenses">Add expense</button>
           <button>Add notes</button>
-          <button id="calculator">Calculator</button>
+          <button id="calculator" @click="toggleClass">Calculator</button>
           <button>Calendar</button>
-        </div>
-
-        <div class="popup-expenses">
-          <i class="fas fa-times-circle"></i>
-          <h4>Welcome back!</h4>
-          <p>Enter your credentials to access your account.</p>
-          <div class="form-element">
-            <label for="day">Day</label>
-            <input type="text" placeholder="Enter day" name="day" required />
-          </div>
-          <div class="form-element">
-            <label for="activity">Activity</label>
-            <input
-              type="text"
-              placeholder="Enter activity"
-              name="activity"
-              required
-            />
-          </div>
-          <div class="form-element">
-            <label for="price">Price</label>
-            <input
-              type="number"
-              placeholder="Enter price"
-              name="price"
-              required
-            />
-          </div>
         </div>
         <div class="summary">
           <section>
@@ -162,28 +142,44 @@
             <button>Delete activity</button>
           </section>
         </div>
-        <!-- <div class="calculator">
-          <div class="display">{{ current || "0" }}</div>
-          <div @click="clear" class="btn">C</div>
-          <div @click="sign" class="btn">+/-</div>
-          <div @click="percent" class="btn">%</div>
-          <div @click="divide" class="btn operator">÷</div>
-          <div @click="append('7')" class="btn">7</div>
-          <div @click="append('8')" class="btn">8</div>
-          <div @click="append('9')" class="btn">9</div>
-          <div @click="times" class="btn operator">x</div>
-          <div @click="append('4')" class="btn">4</div>
-          <div @click="append('5')" class="btn">5</div>
-          <div @click="append('6')" class="btn">6</div>
-          <div @click="minus" class="btn operator">-</div>
-          <div @click="append('1')" class="btn">1</div>
-          <div @click="append('2')" class="btn">2</div>
-          <div @click="append('3')" class="btn">3</div>
-          <div @click="add" class="btn operator">+</div>
-          <div @click="append('0')" class="btn zero">0</div>
-          <div @click="dot" class="btn">.</div>
-          <div @click="equal" class="btn operator">=</div>
-        </div> -->
+
+        <!-- CALCULATOR -->
+        <div class="calculator" v-bind:class="{ active: isActive }">
+          <i class="fas fa-times-circle"></i>
+          <div class="result">{{ current || "0" }}</div>
+          <div class="calculator-row">
+            <div @click="clear" class="btn">C</div>
+            <div @click="sign" class="btn">+/-</div>
+            <div @click="percent" class="btn">%</div>
+            <div @click="divide" class="btn operator">÷</div>
+          </div>
+          <div class="calculator-row">
+            <div @click="append('7')" class="btn">7</div>
+            <div @click="append('8')" class="btn">8</div>
+            <div @click="append('9')" class="btn">9</div>
+            <div @click="times" class="btn operator">x</div>
+          </div>
+          <div class="calculator-row">
+            <div @click="append('4')" class="btn">4</div>
+            <div @click="append('5')" class="btn">5</div>
+            <div @click="append('6')" class="btn">6</div>
+            <div @click="minus" class="btn operator">-</div>
+          </div>
+          <div class="calculator-row">
+            <div @click="append('1')" class="btn">1</div>
+            <div @click="append('2')" class="btn">2</div>
+            <div @click="append('3')" class="btn">3</div>
+            <div @click="add" class="btn operator">+</div>
+          </div>
+          <div class="calculator-row">
+            <div @click="append('0')" class="btn zero">0</div>
+            <div @click="dot" class="btn">.</div>
+            <div @click="equal" class="btn operator">=</div>
+          </div>
+        </div>
+
+        <!-- DARK BACKGROUND OVERLAY -->
+        <div class="dark-bg"></div>
       </div>
     </div>
   </div>
@@ -191,12 +187,22 @@
 
 <script>
 import json from "@/assets/to-do.json";
+import isActive from "../views/CaptainCoin.vue";
 
 export default {
   data: function () {
     return {
       expenses: json.expenses,
+      isActive: false,
     };
+  },
+  methods: {
+    toggleClass: function () {
+      console.log("clicked!!");
+      document.querySelector(".calculator").classList.add("active");
+      document.querySelector(".dark-bg").classList.add("active");
+      isActive = !isActive;
+    },
   },
   mounted: function () {
     console.log(this.expenses);
@@ -250,111 +256,6 @@ export default {
   border-left: 4px solid #346751;
   transition: 0.2s;
 }
-
-.popup-expenses {
-  position: fixed;
-  top: -150%;
-  left: 50%;
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(1.25);
-  width: 60%;
-  max-width: 100%;
-  background-color: #e7e7e7;
-  box-shadow: #92929277 0px -5px 50px 20px;
-  border-radius: 15px;
-  transition: top 0ms ease-in-out 200ms, opacity 200ms ease-in-out 0ms,
-    transform 200ms ease-in-out 20ms;
-}
-.dark-bg {
-  width: 100%;
-  background: #161616;
-  background: -webkit-linear-gradient(to bottom, #161616, #333);
-  background: linear-gradient(to bottom, #161616, #333);
-  height: 100vh;
-  opacity: 0;
-  backdrop-filter: blur(5px);
-  position: fixed;
-  top: -150%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(1.25);
-  transition: top 0ms ease-in-out 200ms, opacity 200ms ease-in-out 0ms,
-    transform 200ms ease-in-out 20ms;
-}
-.popup-expenses.active {
-  top: 50%;
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
-  transition: top 0ms ease-in-out 0ms, opacity 200ms ease-in-out 0ms,
-    transform 200ms ease-in-out 20ms;
-}
-.dark-bg.active {
-  top: 50%;
-  opacity: 0.9;
-  transform: translate(-50%, -50%) scale(1);
-  transition: top 0ms ease-in-out 0ms, opacity 200ms ease-in-out 0ms,
-    transform 200ms ease-in-out 20ms;
-}
-.popup-expenses i {
-  position: absolute;
-  top: 5%;
-  right: 5%;
-  font-size: 25px;
-  color: #365473;
-  cursor: pointer;
-  z-index: 20;
-}
-.popup-expenses h4 {
-  margin-top: 20px;
-  font-size: 30px;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: #365473;
-}
-.form-element {
-  margin: 15px 0;
-}
-.popup-expenses input {
-  padding: 10px;
-  border: 1px solid #92929277;
-  border-radius: 8px;
-  outline: none;
-}
-.popup-expenses input:focus {
-  box-shadow: #36557352 0px 8px 14px;
-  background-color: #3655735e;
-  transition: 0.4s;
-}
-.popup-expenses p {
-  color: #929292;
-  padding-bottom: 30px;
-}
-.popup-expenses input::placeholder {
-  color: #92929277;
-}
-.popup-expenses input:focus::placeholder {
-  color: #e7e7e7;
-}
-.popup-expenses input[type="text"],
-.popup-expenses input[type="password"],
-.popup-expenses label {
-  display: block;
-  width: 100%;
-}
-.popup-expenses label {
-  text-align: left;
-  padding-bottom: 8px;
-  color: #365473;
-  font-weight: bold;
-}
-.popup-expenses button {
-  background-color: #365473;
-  width: 100%;
-  color: #e7e7e7;
-  padding: 10px 0;
-  border-radius: 8px;
-  margin: 30px 0 0 0;
-}
-
 .horizontal-navbar {
   position: fixed;
   z-index: 1;
@@ -622,32 +523,88 @@ hr {
 .id {
   text-indent: 10px;
 }
-// .calculator {
-//   margin: 0 auto;
-//   width: 400px;
-//   font-size: 40px;
-//   display: grid;
-//   grid-template-columns: repeat(4, 1fr);
-//   grid-auto-rows: minmax(50px, auto);
-//   position: relative;
-//   z-index: 10;
-// }
-// .display {
-//   grid-column: 1 / 5;
-//   background-color: #333;
-//   color: white;
-// }
-// .zero {
-//   grid-column: 1 / 3;
-// }
-// .btn {
-//   background-color: #F2F2F2;
-//   border: 1px solid #999;
-// }
-// .operator {
-//   background-color: orange;
-//   color: white;
-// }
+// CARCULATOR STYLING
+.calculator {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  padding: 30px;
+  font-size: 40px;
+  line-height: 100%;
+  background-color: #333;
+  border-radius: 20px;
+  z-index: 3;
+  box-shadow: 0 2px 12px 1px rgb(0 0 0 / 60%);
+  transition: 200ms ease-in-out;
+}
+.calculator.active {
+  transform: translate(-50%, -50%) scale(1);
+}
+.calculator-row {
+  display: flex;
+  justify-content: space-between;
+}
+.calculator-row:nth-child(3) .btn:not(:last-child) {
+  background-color: #346751;
+}
+.result {
+  background-color: #333;
+  color: #ecdbba;
+  padding: 20px 0 30px 35px;
+  margin-top: 30px;
+}
+.zero {
+  flex: 20%;
+  border-radius: 35px !important;
+}
+.btn {
+  background-color: #333;
+  text-align: center;
+  color: #ffffff;
+  box-shadow: 0 2px 12px 1px rgb(0 0 0 / 60%);
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  margin: 10px;
+  padding-top: 15px;
+}
+.operator {
+  background-color: #c84b31;
+  color: white;
+  padding-top: 10px;
+}
+// DARK OVERLAY
+.dark-bg {
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  z-index: 2;
+  left: 0;
+  top: 0;
+  opacity: 85%;
+  background: -webkit-linear-gradient(to bottom, #161616, #333);
+  background: linear-gradient(to bottom, #161616, #333);
+  pointer-events: none;
+  display: none;
+}
+.dark-bg.active {
+  transform: translate(0%, 0%) scale(1);
+  display: block;
+}
+.fa-times-circle {
+  color: #c84b31;
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  font-size: 30px;
+  cursor: pointer;
+  z-index: 3;
+  margin: 10px 30px 30px 0;
+  box-shadow: 0 2px 12px 1px rgb(0 0 0 / 60%);
+  border-radius: 50%;
+}
+
 @media screen and (max-width: 992px) {
   .newlinks a {
     color: #ecdbba;
