@@ -4,27 +4,63 @@
     <div class="data">
       <router-link to="/" target="self"><h2>CaptainCoin</h2></router-link>
       <h1>Welcome to the club!</h1>
-      <p>If everyone is moving forward together, then success takes care of itself! This club is for members only. But once you join, membership lasts for an eternity.</p>
+      <p>
+        If everyone is moving forward together, then success takes care of
+        itself! This club is for members only. But once you join, membership
+        lasts for an eternity.
+      </p>
     </div>
     <div class="register-information">
       <h1>Registration</h1>
       <form action="">
-        <label for="firstname">Firstname:
-          <input type="firstname" id="firstname" name="firstname" placeholder="enter your firstname"/>
+        <label for="firstname"
+          >Firstname:
+          <input
+            type="firstname"
+            id="firstname"
+            name="firstname"
+            placeholder="enter your firstname"
+          />
         </label>
-        <label for="lastname">Lastname:
-          <input type="lastname" id="lastname" name="lastname" placeholder="enter your lastname"/>
+        <label for="lastname"
+          >Lastname:
+          <input
+            type="lastname"
+            id="lastname"
+            name="lastname"
+            placeholder="enter your lastname"
+          />
         </label>
-        <label for="email">Email:
-          <input type="email" id="email" name="email" placeholder="enter your email"/>
+        <label for="email"
+          >Email:
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="enter your email"
+          />
         </label>
-        <label for="password">Password:
-          <input type="password" id="password" name="password" placeholder="enter your password"/>
+        <label for="password"
+          >Password:
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="enter your password"
+          />
         </label>
-        <label for="password2">Confirm password:
-          <input type="password2" id="password2" name="password2" placeholder="confirm your password"/>
+        <label for="password2"
+          >Confirm password:
+          <input
+            type="password2"
+            id="password2"
+            name="password2"
+            placeholder="confirm your password"
+          />
         </label>
-        <router-link to="/data" target="self"><button>Create account</button></router-link>
+        <router-link to="/data" target="self"
+          ><button>Create account</button></router-link
+        >
       </form>
     </div>
   </div>
@@ -35,7 +71,7 @@ export default {
   name: "register",
   components: {
     // register,
-  }
+  },
 };
 </script>
 
@@ -44,7 +80,7 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Dosis");
 
 body {
-  font-family: "Dosis", sans-serif !important; 
+  font-family: "Dosis", sans-serif !important;
 }
 html {
   height: 100%;
@@ -56,10 +92,16 @@ html {
   background-size: cover;
   background-attachment: fixed;
   color: #d4dfe0;
-} 
+}
 .top-layer {
   min-height: 100vh;
-  background: -webkit-gradient( linear, left top, left bottom, color-stop(0%, #16161613), color-stop(100%, #161616e8));
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0%, #16161613),
+    color-stop(100%, #161616e8)
+  );
   position: absolute;
   z-index: 0;
   width: 100%;
@@ -81,12 +123,12 @@ html {
   float: right;
 }
 .register-information h1 {
-  font-size: 45px;
+  font-size: 2.813rem;
   text-shadow: 2px 5px 6px #000000be;
   color: #5aa897;
 }
 .data h2 {
-  font-size: 40px;
+  font-size: 2.5rem;
   font-weight: bold;
   color: #d4dfe0;
   position: relative;
@@ -175,18 +217,19 @@ form button:hover:after {
   transition: ease-out 0.2s;
 }
 @media screen and (max-width: 992px) {
-	.register-information{
-		width: 80%;
-		margin: 0 10%;
-		position: relative;
+  .register-information {
+    width: 80%;
+    margin: 0 10%;
+    position: relative;
     z-index: 2;
-		min-height: auto;
+    min-height: auto;
     border-radius: 15px;
-	}
-	.top-layer, .register{
-		min-height: 130vh;
-	}
-  .data{
+  }
+  .top-layer,
+  .register {
+    min-height: 130vh;
+  }
+  .data {
     float: none;
     width: 80%;
     margin: 0 auto;
@@ -201,12 +244,18 @@ form button:hover:after {
     top: 0px;
     text-align: center;
   }
-  .data h2{
+  .data h2 {
     text-align: center;
     bottom: 30px;
   }
-  .top-layer{
-    background: -webkit-gradient( linear, left top, left bottom, color-stop(0%, #1616169a), color-stop(100%, #16161685));
+  .top-layer {
+    background: -webkit-gradient(
+      linear,
+      left top,
+      left bottom,
+      color-stop(0%, #1616169a),
+      color-stop(100%, #16161685)
+    );
   }
 }
 @media screen and (max-width: 768px) {
@@ -214,21 +263,21 @@ form button:hover:after {
   label:nth-child(2) {
     width: 100%;
     padding-bottom: 0;
-}
+  }
   label:nth-child(1) {
     margin-right: 0%;
   }
-  label:nth-child(2){
+  label:nth-child(2) {
     padding-bottom: 20px;
   }
   .top-layer,
-  .register{
-    height: 15   0vh;
+  .register {
+    height: 15 0vh;
   }
-  .register-information h1{
+  .register-information h1 {
     text-align: center;
   }
-  form button{
+  form button {
     margin: 40px auto 0 auto;
     display: block;
   }
