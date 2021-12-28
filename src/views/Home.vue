@@ -30,7 +30,9 @@
           <h2>Why would you have to be the one doing all the calculations?</h2>
           <!-- create base -->
           <div class="main-buttons">
-            <router-link to="/register" target="self"><button id="register">Create An Account</button></router-link>
+            <router-link to="/register" target="self"
+              ><button id="register">Create An Account</button></router-link
+            >
             <div class="center">
               <button id="login">Sign In</button>
             </div>
@@ -41,14 +43,33 @@
                 <p>Enter your credentials to access your account.</p>
                 <div class="form-element">
                   <label for="email" id="nonselectable">Email</label>
-                  <input type="text" placeholder="Enter your email" name="email" id="nonselectable" required/>
+                  <input
+                    type="text"
+                    placeholder="Enter your email"
+                    name="email"
+                    id="nonselectable"
+                    required
+                  />
                 </div>
                 <div class="form-element">
                   <label for="password" id="nonselectable">Password</label>
-                  <input type="password" placeholder="Enter your password" name="password" id="nonselectable" required/>
+                  <input
+                    type="password"
+                    placeholder="Enter your password"
+                    name="password"
+                    id="nonselectable"
+                    required
+                  />
                 </div>
                 <div class="form-element">
-                  <button type="submit" class="login" id="nonselectable" disabled>Login</button>
+                  <button
+                    type="submit"
+                    class="login"
+                    id="nonselectable"
+                    disabled
+                  >
+                    Login
+                  </button>
                 </div>
               </div>
 
@@ -57,17 +78,30 @@
                 <p>Enter your credentials to access your account.</p>
                 <div class="form-element">
                   <label for="email">Email</label>
-                  <input type="text" placeholder="Enter your email" name="email" required/>
+                  <input
+                    type="text"
+                    placeholder="Enter your email"
+                    name="email"
+                    required
+                  />
                 </div>
                 <div class="form-element">
                   <label for="password">Password</label>
-                  <input type="password" placeholder="Enter your password" name="password" required/>
+                  <input
+                    type="password"
+                    placeholder="Enter your password"
+                    name="password"
+                    required
+                  />
                 </div>
                 <div class="form-element">
-                  <router-link to="/captaincoin" target="self"><button type="submit" class="login">Login</button></router-link>
+                  <router-link to="/captaincoin" target="self"
+                    ><button type="submit" class="login">
+                      Login
+                    </button></router-link
+                  >
                 </div>
               </div>
-              
             </div>
           </div>
 
@@ -95,10 +129,19 @@
         <hr class="heading-underline" />
         <div class="quotation">
           <span>&#10078;</span>
-          <blockquote>A budget is telling your money where to go instead of wondering where it went.</blockquote>
+          <blockquote>
+            A budget is telling your money where to go instead of wondering
+            where it went.
+          </blockquote>
           <span>&#10080;</span>
         </div>
-        <p>We are a small team whose main idea is to make budgeting life easier for you. We offer possibility of adding up income, categorizing expenses, and creating a rough outline for a budget, setting a specific financial goal. The stage of life you’re in usually determines what type of goals you wish to achieve.</p>
+        <p>
+          We are a small team whose main idea is to make budgeting life easier
+          for you. We offer possibility of adding up income, categorizing
+          expenses, and creating a rough outline for a budget, setting a
+          specific financial goal. The stage of life you’re in usually
+          determines what type of goals you wish to achieve.
+        </p>
       </div>
     </div>
     <!-- GOALS SECTION -->
@@ -111,27 +154,50 @@
           <div class="goal-left">
             <div class="content">
               <h2>Make a budget and live by it</h2>
-              <p>Budgets are focused on debts and expenses and nobody got rich by focusing on their debts. You get wealthy by focusing on your assets and your income. Most experts agree that budgets are useful, if only to clearly define the amount of income and fixed expenses in someone’s household. Creating a budget is a great way to know your financial limits.</p>
+              <p>
+                Budgets are focused on debts and expenses and nobody got rich by
+                focusing on their debts. You get wealthy by focusing on your
+                assets and your income. Most experts agree that budgets are
+                useful, if only to clearly define the amount of income and fixed
+                expenses in someone’s household. Creating a budget is a great
+                way to know your financial limits.
+              </p>
             </div>
           </div>
           <div class="goal-right">
             <div class="content">
               <h2>Saving an emergency fund</h2>
-              <p>In a fragile job market, emergency funds are essential. Emergency funds are commonly used to fix a surprise car repair,
-              pay for a hospital stay, the mortgage, and a variety of other unforeseen issues.</p>
+              <p>
+                In a fragile job market, emergency funds are essential.
+                Emergency funds are commonly used to fix a surprise car repair,
+                pay for a hospital stay, the mortgage, and a variety of other
+                unforeseen issues.
+              </p>
             </div>
           </div>
           <div class="goal-left">
             <div class="content">
               <h2>Prioritize expenses and goals</h2>
-              <p>Understand the difference between needs and wants, then focus on the essentials first. That doesn’t mean other expenses aren’t important, though. Your financial goals, such as paying off debt or saving for retirement, should still receive attention. The purpose of a budget, is to understand whether or not your money is going toward things that you’re happy with, you’re proud of and align with your values.</p>
+              <p>
+                Understand the difference between needs and wants, then focus on
+                the essentials first. That doesn’t mean other expenses aren’t
+                important, though. Your financial goals, such as paying off debt
+                or saving for retirement, should still receive attention. The
+                purpose of a budget, is to understand whether or not your money
+                is going toward things that you’re happy with, you’re proud of
+                and align with your values.
+              </p>
             </div>
           </div>
         </div>
         <div class="goal-right">
           <div class="content">
             <h2>Leave room for surprises</h2>
-            <p>Don’t expect your budget to be perfect. Surprises will happen, and some expenses may slip through the cracks — like the occasional impulse buy. But you can take precautions to soften the blow.</p>
+            <p>
+              Don’t expect your budget to be perfect. Surprises will happen, and
+              some expenses may slip through the cracks — like the occasional
+              impulse buy. But you can take precautions to soften the blow.
+            </p>
           </div>
         </div>
       </div>
@@ -144,7 +210,11 @@
         <hr class="heading-underline" />
         <article>
           <h2>Get in touch with us!</h2>
-          <p>A creator-friendly customer support team that’s just a click away. We’re here to help and answer any question you might have. We look forward to hearing from you. Feel free to contact us.</p>
+          <p>
+            A creator-friendly customer support team that’s just a click away.
+            We’re here to help and answer any question you might have. We look
+            forward to hearing from you. Feel free to contact us.
+          </p>
 
           <!-- add hover -->
           <!--  add links -->
@@ -181,7 +251,14 @@
     <div class="map">
       <div class="wrapper">
         <article>
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2781.7974754342285!2d15.967324915568545!3d4579528497910614!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f131!3m3!1m2!1s0x4765d68b441ce2df%3A0x54e2a03adf42446f!2sTehni%C4%8Dko%20veleu%C4%8Dili%C5%A1te%20u%20Zagrebu!5e0!3m2!1shr!2shr!4v1637181352494!5m2!1shr!2shr" height="400" width="100%" style="border: 0" allowfullscreen="" loading="lazy"></iframe>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2781.7974754342285!2d15.967324915568545!3d4579528497910614!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f131!3m3!1m2!1s0x4765d68b441ce2df%3A0x54e2a03adf42446f!2sTehni%C4%8Dko%20veleu%C4%8Dili%C5%A1te%20u%20Zagrebu!5e0!3m2!1shr!2shr!4v1637181352494!5m2!1shr!2shr"
+            height="400"
+            width="100%"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+          ></iframe>
         </article>
         <article>
           <h2>Other contact information</h2>
