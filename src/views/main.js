@@ -1,7 +1,6 @@
 //buefy
 import Vue from "vue";
 import App from "./App.vue";
-import CaptainCoin from "./CaptainCoin.vue";
 import router from "./router";
 
 import Buefy from "buefy";
@@ -47,35 +46,8 @@ document
     document.querySelector(".dark-bg").classList.remove("active");
   });
 
-// POPUP EXPENSES
-document.querySelector("#sranje").addEventListener("click", function () {
-  document.querySelector("popup-expenses").classList.add("active");
-});
-document
-  .querySelector(".popup-expenses .fa-times-circle")
-  .addEventListener("click", function () {
-    document.querySelector(".popup-expenses").classList.remove("active");
-  });
-
 // SCROLL TO TOP
 const toTop = document.querySelector(".to-top");
-
-function handleFormSubmit(event) {
-  event.preventDefault();
-
-  const data = new FormData(event.target);
-
-  const formJSON = Object.fromEntries(data.entries());
-
-  // for multi-selects, we need special handling
-  formJSON.snacks = data.getAll("snacks");
-
-  const results = document.querySelector(".results pre");
-  results.innerText = JSON.stringify(formJSON, null, 2);
-}
-
-const form = document.querySelector(".contact-form");
-form.addEventListener("submit", handleFormSubmit);
 
 window.addEventListener("scroll", () => {
   if (window.pageYOffset > 100) {
@@ -84,3 +56,22 @@ window.addEventListener("scroll", () => {
     toTop.classList.remove("active");
   }
 });
+
+// POPUP CALCULATOR
+
+// DATA
+function handleFormSubmit(event) {
+  event.preventDefault();
+
+  const data = new FormData(event.target);
+
+  const formJSON = Object.fromEntries(data.entries());
+
+  formJSON.snacks = data.getAll("snacks");
+
+  const results = document.querySelector(".results pre");
+  results.innerText = JSON.stringify(formJSON, null, 2);
+}
+
+const form = document.querySelector(".contact-form");
+form.addEventListener("submit", handleFormSubmit);
