@@ -216,14 +216,21 @@
             forward to hearing from you. Feel free to contact us.
           </p>
 
-          <!-- add hover -->
-          <!--  add links -->
-
-          <!-- social media icons -->
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-linkedin"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
+          <!-- SOCIAL MEDIA ICONS -->
+          <a href="https://hr-hr.facebook.com/TVZ.Zagreb/"
+            ><i class="fab fa-facebook"></i
+          ></a>
+          <a
+            href="https://hr.linkedin.com/school/tehni%C4%8Dko-veleu%C4%8Dili%C5%A1te-u-zagrebu/"
+            ><i class="fab fa-linkedin"></i
+          ></a>
+          <a href="https://twitter.com/tvz_zagreb"
+            ><i class="fab fa-twitter"></i
+          ></a>
+          <a
+            href="https://www.instagram.com/tehnicko_veleuciliste_zagreb/?hl=hr"
+            ><i class="fab fa-instagram"></i
+          ></a>
         </article>
 
         <article>
@@ -247,6 +254,7 @@
         </article>
       </div>
     </div>
+    
     <!-- MAP SECTION-->
     <div class="map">
       <div class="wrapper">
@@ -269,7 +277,7 @@
         </article>
       </div>
     </div>
-    <a href="#" class="to-top">
+    <a href="#" class="toTopBefore" :class="{ toTop: scrollPosition > 60 }">
       <i class="fas fa-arrow-circle-up"></i>
     </a>
   </div>
