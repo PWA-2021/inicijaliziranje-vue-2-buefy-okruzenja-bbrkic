@@ -1,7 +1,7 @@
 /* //fonts */
 @import url("https://fonts.googleapis.com/css2?family=Dosis");
 
-html{
+html {
   scroll-behavior: smooth;
 }
 body {
@@ -172,19 +172,19 @@ header nav a:hover {
   padding: 5%;
 }
 .popup-bg-image input,
-.popup-bg-image button{
- visibility: hidden;
+.popup-bg-image button {
+  visibility: hidden;
 }
-.text{
+.text {
   float: left;
   width: 50%;
   padding: 5%;
 }
-.popup-bg-image h4, 
+.popup-bg-image h4,
 .popup-bg-image p,
 .popup-bg-image label,
 .popup-bg-image input::placeholder,
-.popup-bg-image button{
+.popup-bg-image button {
   visibility: hidden;
 }
 .popup {
@@ -192,15 +192,14 @@ header nav a:hover {
   top: -150%;
   left: 50%;
   opacity: 0;
-  transform: translate(-50%, -50%) scale(1.25);
+  transform: translate(-50%, -50%) scale(0);
   width: 60%;
   max-width: 100%;
   background-color: #e7e7e7;
   box-shadow: #92929277 0px -5px 50px 20px;
   border-radius: 15px;
-  transition: top 0ms ease-in-out 200ms, 
-              opacity 200ms ease-in-out 0ms,
-              transform 200ms ease-in-out 20ms;
+  transition: top 0ms ease-in-out 200ms, opacity 200ms ease-in-out 0ms,
+    transform 200ms ease-in-out 20ms;
 }
 .dark-bg {
   width: 100%;
@@ -223,7 +222,7 @@ header nav a:hover {
   transform: translate(-50%, -50%) scale(1);
   transition: top 0ms ease-in-out 0ms, opacity 200ms ease-in-out 0ms,
     transform 200ms ease-in-out 20ms;
-    z-index: 2;
+  z-index: 2;
 }
 .dark-bg.active {
   top: 50%;
@@ -231,7 +230,7 @@ header nav a:hover {
   transform: translate(-50%, -50%) scale(1);
   transition: top 0ms ease-in-out 0ms, opacity 200ms ease-in-out 0ms,
     transform 200ms ease-in-out 20ms;
-    z-index: 2;
+  z-index: 2;
 }
 .popup i {
   position: absolute;
@@ -515,6 +514,10 @@ header nav a:hover {
   top: 30px;
   margin-right: 10px;
 }
+.contacts i:hover {
+  transform: scale(1.1);
+  transition: 0.2s;
+}
 .map {
   background-color: #161616;
   padding: 50px 0;
@@ -573,21 +576,21 @@ p::before {
 .contacts .checkbox input[type="checkbox"]:checked + .check {
   background-color: #346751 !important;
 }
-.to-top{
-  color: #346751;
-  font-size: 45px;
+.toTopBefore {
   position: fixed;
   right: 25px;
   bottom: 20px;
+  font-size: 45px;
+  color: #346751;
   opacity: 0;
   transition: all 0.4s;
 }
-.to-top.active{
+.toTop {
   opacity: 1;
   bottom: 30px;
 }
-.to-top.active:hover{
-  color: #346751;
+.toTop:active {
+  transform: scale(0.95);
 }
 @media screen and (max-width: 992px) {
   header {
@@ -665,11 +668,11 @@ p::before {
   .bar3 {
     transition: 0.3s;
   }
-  .barclose1{
+  .barclose1 {
     top: 10px;
     transform: rotate(45deg);
   }
-  .barclose1, 
+  .barclose1,
   .barclose2,
   .barclose3 {
     width: 100%;
@@ -701,10 +704,10 @@ p::before {
     width: 220px;
     padding: 12px 0;
   }
-  .popup{
+  .popup {
     width: 80%;
   }
-  .popup button{
+  .popup button {
     width: 100%;
   }
   .main-center {
@@ -799,17 +802,17 @@ p::before {
     width: 100%;
     margin-right: 0;
   }
-  .popup{
+  .popup {
     width: 90%;
   }
-  .popup button{
+  .popup button {
     width: 100%;
   }
-  .to-top{
+  .toTop {
     right: 2%;
     bottom: 2%;
   }
-  .to-top.active{
+  .toTop.active {
     bottom: 3%;
   }
 }
@@ -825,21 +828,21 @@ p::before {
     width: 100%;
     margin: 10px 0;
   }
-  .popup-bg-image{
+  .popup-bg-image {
     display: none;
   }
-  .text{
+  .text {
     width: 100%;
   }
-  .popup h4, 
+  .popup h4,
   .popup label,
-  .popup i{
+  .popup i {
     color: #346751;
   }
-  .popup button{
+  .popup button {
     background-color: #346751;
   }
-  .popup input:focus{
+  .popup input:focus {
     background-color: #34675133;
     box-shadow: #34675133 0px 8px 14px;
     border-color: #34675133;
