@@ -35,9 +35,12 @@
       <div class="frames">
         <!-- TOP BUTTONS -->
         <div class="top-buttons">
-          <button id="pop-expenses">Add expense</button>
-          <button>Add notes</button>
-          <button id="calculator" @click="toggleClass">Calculator</button>
+          <button id="add-expenses" @click="toggleClassExpense">
+            Add expense
+          </button>
+          <button id="calculator" @click="toggleClassCalculator">
+            Calculator
+          </button>
           <button>Calendar</button>
         </div>
         <div class="summary">
@@ -182,6 +185,35 @@
           </div>
         </div>
 
+        <!-- ADDING EXPENSES -->
+        <div class="add-expense">
+          <form action="" class="form-expense">
+            <select name="" id="">
+              <option value="food">Food</option>
+              <option value="transport">Transport</option>
+              <option value="drinks">Drinks</option></select
+            ><br />
+            <label for="description"
+              >Activity description:
+              <input
+                type="text"
+                id="description"
+                name="description"
+                placeholder="Enter activity description"
+              />
+            </label>
+            <label for="cost"
+              >Costs:
+              <input
+                type="text"
+                id="cost"
+                name="cost"
+                placeholder="How much money have you spent?"
+              />
+              <button>Submit</button>
+            </label>
+          </form>
+        </div>
         <!-- DARK BACKGROUND OVERLAY -->
         <div class="dark-bg"></div>
       </div>
@@ -207,15 +239,25 @@ export default {
     };
   },
   methods: {
-    toggleClass: function () {
+    toggleClassCalculator: function () {
       console.log("clicked!!");
       document.querySelector(".calculator").classList.add("active");
       document.querySelector(".dark-bg").classList.add("active");
+      document.getElementsByTagName("button").disabled = "true";
+
+      isActive = !isActive;
+    },
+    toggleClassExpense: function () {
+      console.log("clicked!!");
+      document.querySelector(".add-expense").classList.add("active");
+      document.querySelector(".dark-bg").classList.add("active");
+      document.getElementsById("calculator").setAttribute("disabled");
       isActive = !isActive;
     },
     closeButton: function () {
       console.log("clicked!!");
       document.querySelector(".calculator").classList.remove("active");
+      document.querySelector(".add-expense").classList.remove("active");
       document.querySelector(".dark-bg").classList.remove("active");
       isActive = false;
     },
@@ -265,8 +307,8 @@ export default {
     },
     equal() {
       this.current = `${this.operator(
-        parseFloat(this.current),
-        parseFloat(this.previous)
+        parseFloat(this.previous),
+        parseFloat(this.current)
       )}`;
       this.previous = null;
     },
@@ -355,7 +397,7 @@ export default {
 }
 .top-buttons button {
   padding: 10px 0;
-  width: 20%;
+  width: 32%;
   text-align: center;
   background-color: #346751;
   font-size: 18px;
@@ -535,7 +577,8 @@ hr {
 .heading-row input[type="checkbox"] {
   visibility: hidden;
 }
-.to-do button {
+.to-do button,
+.add-expense button {
   background-color: #346751;
   color: #ecdbba;
   display: flex;
@@ -637,6 +680,9 @@ hr {
   padding-top: 15px;
   cursor: pointer;
 }
+.btn:active {
+  transform: scale(0.95);
+}
 .operator {
   background-color: #c84b31;
   color: white;
@@ -660,6 +706,9 @@ hr {
   transform: translate(0%, 0%) scale(1);
   display: block;
 }
+.dark-bg.active button {
+  pointer-events: none;
+}
 .fa-times-circle {
   color: #c84b31;
   position: fixed;
@@ -668,11 +717,26 @@ hr {
   font-size: 30px;
   cursor: pointer;
   z-index: 3;
-  margin: 10px 30px 30px 0;
+  margin: 10px 20px 30px 0;
   box-shadow: 0 2px 12px 1px rgb(0 0 0 / 60%);
   border-radius: 50%;
 }
-
+.add-expense {
+  max-width: 1000px;
+  background-color: #ecdbba;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  padding: 30px;
+  border-radius: 20px;
+  z-index: 3;
+  box-shadow: 0 2px 12px 1px rgb(0 0 0 / 60%);
+  transition: 200ms ease-in-out;
+}
+.add-expense.active {
+  transform: translate(-50%, -50%) scale(1);
+}
 @media screen and (max-width: 992px) {
   .newlinks a {
     color: #ecdbba;
@@ -802,6 +866,24 @@ hr {
   .summary-chart section {
     margin-top: 20px;
   }
+  .calculator {
+    padding: 20px;
+    font-size: 30px;
+  }
+  .result {
+    padding: 20px 0 30px 30px;
+  }
+  .btn {
+    width: 50px;
+    height: 50px;
+    padding-top: 10px;
+  }
+  .operator {
+    padding-top: 8px;
+  }
+  .fa-times-circle {
+    margin: 10px 10px 30px 0;
+  }
 }
 @media screen and (max-width: 768px) {
   .summary section {
@@ -811,6 +893,21 @@ hr {
   .summary article:last-child {
     width: 100%;
     display: block;
+  }
+  .calculator {
+    padding: 10px;
+    font-size: 20px;
+  }
+  .result {
+    padding: 20px 0 30px 25px;
+  }
+  .btn {
+    width: 40px;
+    height: 40px;
+  }
+  .fa-times-circle {
+    margin: 10px 0px 30px 0;
+    font-size: 20px;
   }
 }
 </style>
