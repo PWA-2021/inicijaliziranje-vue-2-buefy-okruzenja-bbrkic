@@ -579,7 +579,7 @@ p::before {
 .toTopBefore {
   position: fixed;
   right: 25px;
-  bottom: 20px;
+  bottom: 15px;
   font-size: 45px;
   color: #346751;
   opacity: 0;
@@ -587,7 +587,7 @@ p::before {
 }
 .toTop {
   opacity: 1;
-  bottom: 30px;
+  bottom: 20px;
 }
 .toTop:active {
   transform: scale(0.95);
