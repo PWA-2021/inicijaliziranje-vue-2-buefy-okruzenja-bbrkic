@@ -34,6 +34,16 @@ menubar.addEventListener("click", function () {
   vertical_navbar.classList.toggle("newlinks");
 });
 
+// SCROLL TO TOP
+const toTop = document.querySelector(".to-top");
+
+window.addEventListener("scroll", () => {
+  if (window.pageYOffset > 100) {
+    toTop.classList.add("active");
+  } else {
+    toTop.classList.remove("active");
+  }
+});
 // POPUP LOGIN
 document.querySelector("#login").addEventListener("click", function () {
   document.querySelector(".popup").classList.add("active");
@@ -46,30 +56,4 @@ document
     document.querySelector(".dark-bg").classList.remove("active");
   });
 
-// SCROLL TO TOP
-const toTop = document.querySelector(".to-top");
-
-window.addEventListener("scroll", () => {
-  if (window.pageYOffset > 100) {
-    toTop.classList.add("active");
-  } else {
-    toTop.classList.remove("active");
-  }
-});
-
-// DATA
-function handleFormSubmit(event) {
-  event.preventDefault();
-
-  const data = new FormData(event.target);
-
-  const formJSON = Object.fromEntries(data.entries());
-
-  formJSON.snacks = data.getAll("snacks");
-
-  const results = document.querySelector(".results pre");
-  results.innerText = JSON.stringify(formJSON, null, 2);
-}
-
-const form = document.querySelector(".contact-form");
-form.addEventListener("submit", handleFormSubmit);
+  
