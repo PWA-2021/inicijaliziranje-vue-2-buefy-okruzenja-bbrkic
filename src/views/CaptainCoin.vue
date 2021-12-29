@@ -187,12 +187,21 @@
 
         <!-- ADDING EXPENSES -->
         <div class="add-expense">
+          <i
+            class="fas fa-times-circle"
+            v-bind:class="{ active: isActive }"
+            @click="closeButton"
+          ></i>
+          <h1>INPUT YOUR LATEST EXPENSES</h1>
           <form action="" class="form-expense">
-            <select name="" id="">
-              <option value="food">Food</option>
-              <option value="transport">Transport</option>
-              <option value="drinks">Drinks</option></select
-            ><br />
+            <label for="categories">Select category:<br />
+              <select name="categories" id="categories">
+                <option value="" selected disabled>Select an option</option>
+                <option value="food">Food</option>
+                <option value="transport">Transport</option>
+                <option value="drinks">Drinks</option></select
+              >
+            </label>
             <label for="description"
               >Activity description:
               <input
@@ -200,10 +209,10 @@
                 id="description"
                 name="description"
                 placeholder="Enter activity description"
-              />
+              /><br />
             </label>
             <label for="cost"
-              >Costs:
+              >Costs:<br />
               <input
                 type="text"
                 id="cost"
@@ -579,6 +588,7 @@ hr {
 }
 .to-do button,
 .add-expense button {
+  font-family: "Dosis", sans-serif;
   background-color: #346751;
   color: #ecdbba;
   display: flex;
@@ -721,9 +731,12 @@ hr {
   box-shadow: 0 2px 12px 1px rgb(0 0 0 / 60%);
   border-radius: 50%;
 }
+
+// ADD EXPENSE
 .add-expense {
-  max-width: 1000px;
-  background-color: #ecdbba;
+  width: 600px;
+  background-color: #ffffff;
+  color: #346751;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -736,6 +749,37 @@ hr {
 }
 .add-expense.active {
   transform: translate(-50%, -50%) scale(1);
+}
+.add-expense label {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.add-expense input, .add-expense select {
+  display: inline-block;
+  width: 100%;
+  color: #4a4a4a;
+}
+.add-expense .fa-times-circle{
+  font-size: 22px;
+  box-shadow: none;
+  margin-right: 10px;
+}
+.add-expense h1{
+  font-weight: bold;
+  font-size: 25px;
+  text-align: center;
+  padding-top: 25px;
+}
+.add-expense button{
+  width: 100%;
+  display: block;
+  text-align: center;
+  padding: 10px 0;
+  margin-top: 40px;
+  font-size: 18px;
 }
 @media screen and (max-width: 992px) {
   .newlinks a {
