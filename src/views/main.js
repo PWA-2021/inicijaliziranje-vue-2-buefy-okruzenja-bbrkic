@@ -6,10 +6,14 @@ import router from "./router";
 import Buefy from "buefy";
 import "buefy/dist/buefy.css";
 import VueTypedJs from "vue-typed-js";
+import VCalendar from 'v-calendar';
 
 Vue.config.productionTip = false;
 Vue.use(Buefy);
 Vue.use(VueTypedJs);
+Vue.use(VCalendar, {
+  componentPrefix: 'vc',  
+});
 
 new Vue({
   router,
