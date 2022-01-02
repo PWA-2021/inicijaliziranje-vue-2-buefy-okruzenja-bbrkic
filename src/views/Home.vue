@@ -254,7 +254,7 @@
         </article>
       </div>
     </div>
-    
+
     <!-- MAP SECTION-->
     <div class="map">
       <div class="wrapper">
@@ -284,12 +284,15 @@
 </template>
 
 <script>
+//import data from "../views/Home.vue";
+import userService from '../services/usersService'
 export default {
   name: "home",
   components: {},
 
   data() {
     return {
+      users: [],
       scrollPosition: null,
     };
   },
@@ -304,6 +307,7 @@ export default {
   },
   mounted() {
     window.addEventListener("scroll", this.updateScroll);
+    this.users = userService.getAll;
   },
 };
 </script>
