@@ -182,11 +182,6 @@ input:focus {
   border: 1px solid #346751;
   cursor: pointer;
 }
-.left-divs > div button:hover,
-.right-divs > div button:hover {
-  background-color: #2a4d3d;
-  transition: 0.2s;
-}
 .monthly-expenses input,
 .other-expenses input,
 .continuous-expenses input {
@@ -201,43 +196,50 @@ input:focus {
   color: #e7e7e7;
   text-transform: uppercase;
   cursor: pointer;
+  transition: 1s;
 }
 #back {
   float: left;
   background-color: #c84b31;
 }
-// fix transition bug
-#back::before {
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900;
-  margin-right: 5px;
-  transition: 0.2s;
-}
-#back:hover {
-  transition: 0.2s;
-}
-#back:hover::before {
-  opacity: 1;
-  transition: 0.2s;
-  content: "\f060";
-}
 #next {
   background-color: #346751;
   float: right;
+  transition: 0.2s;
+  padding-left: 11px;
 }
-#next::after {
+#back {
+  transition: 0.2s;
+  padding-left: 5px;
+}
+#next::after,
+#back::after {
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
-  margin-left: 5px;
-  transition: 0.2s;
+  content: "\f061";
+  transition: opacity 0.2s;
+  opacity: 0;
+  padding-left: 6px;
+}
+#back::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f060";
+  transition: opacity 0.2s;
+  opacity: 0;
+  padding-right: 6px;
 }
 #next:hover {
-  transition: 0.2s;
+  background-color: #2a4d3d;
+  padding-left: 2px;
 }
-#next:hover::after {
+#back:hover {
+  background-color: #a73f2a;
+  padding-left: 12px;
+}
+#next:hover::after,
+#back:hover::before {
   opacity: 1;
-  transition: 0.2s;
-  content: "\f061";
 }
 .bottom-buttons {
   margin: 0 8%;
