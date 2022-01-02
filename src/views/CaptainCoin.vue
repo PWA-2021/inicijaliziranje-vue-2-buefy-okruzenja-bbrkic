@@ -38,6 +38,7 @@
           <button id="add-expenses" @click="toggleClassExpense">
             Add expense
           </button>
+          <button id="add-notes" @click="toggleClassNote">Add notes</button>
           <button id="calculator" @click="toggleClassCalculator">
             Calculator
           </button>
@@ -193,14 +194,20 @@
             @click="closeButton"
           ></i>
           <h1>INPUT YOUR LATEST EXPENSES</h1>
-          <form action="" class="form-expense">
-            <label for="categories">Select category:<br />
-              <select name="categories" id="categories">
-                <option value="" selected disabled>Select an option</option>
-                <option value="food">Food</option>
-                <option value="transport">Transport</option>
-                <option value="drinks">Drinks</option></select
+          <form action="" class="form-expense" @submit.prevent="submit">
+            <label for="categories"
+              >Select category:<br />
+              <select
+                name="categories"
+                id="categories"
+                v-model="category"
+                required
               >
+                <option selected disabled>Select an option</option>
+                <option>Food</option>
+                <option>Transport</option>
+                <option>Drinks</option>
+              </select>
             </label>
             <label for="description"
               >Activity description:
@@ -209,20 +216,78 @@
                 id="description"
                 name="description"
                 placeholder="Enter activity description"
+                v-model="description"
+                required
               /><br />
             </label>
             <label for="cost"
               >Costs:<br />
               <input
-                type="text"
+                type="number"
                 id="cost"
                 name="cost"
                 placeholder="How much money have you spent?"
+                v-model="cost"
+                required
               />
-              <button>Submit</button>
+              <button type="submit">Submit</button>
             </label>
           </form>
         </div>
+
+        <!-- CALENDAR -->
+        <div class="calendar">
+          <v-sheet tile height="54" class="d-flex">
+            <v-btn icon class="ma-2" @click="$refs.calendar.prev()">
+              <v-icon>mdi-chevron-left</v-icon>
+            </v-btn>
+            <v-select
+              v-model="type"
+              :items="types"
+              dense
+              outlined
+              hide-details
+              class="ma-2"
+              label="type"
+            ></v-select>
+            <v-select
+              v-model="mode"
+              :items="modes"
+              dense
+              outlined
+              hide-details
+              label="event-overlap-mode"
+              class="ma-2"
+            ></v-select>
+            <v-select
+              v-model="weekday"
+              :items="weekdays"
+              dense
+              outlined
+              hide-details
+              label="weekdays"
+              class="ma-2"
+            ></v-select>
+            <v-spacer></v-spacer>
+            <v-btn icon class="ma-2" @click="$refs.calendar.next()">
+              <v-icon>mdi-chevron-right</v-icon>
+            </v-btn>
+          </v-sheet>
+          <v-sheet height="600">
+            <v-calendar
+              ref="calendar"
+              v-model="value"
+              :weekdays="weekday"
+              :type="type"
+              :events="events"
+              :event-overlap-mode="mode"
+              :event-overlap-threshold="30"
+              :event-color="getEventColor"
+              @change="getEvents"
+            ></v-calendar>
+          </v-sheet>
+        </div>
+
         <!-- DARK BACKGROUND OVERLAY -->
         <div class="dark-bg"></div>
       </div>
@@ -233,6 +298,7 @@
 <script>
 import json from "@/assets/to-do.json";
 import isActive from "../views/CaptainCoin.vue";
+// import data from "../views/CaptainCoin.vue";
 
 export default {
   data: function () {
@@ -252,15 +318,14 @@ export default {
       console.log("clicked!!");
       document.querySelector(".calculator").classList.add("active");
       document.querySelector(".dark-bg").classList.add("active");
-      document.getElementsByTagName("button").disabled = "true";
-
+      document.getElementById("add-expenses").disabled = true;
       isActive = !isActive;
     },
     toggleClassExpense: function () {
       console.log("clicked!!");
       document.querySelector(".add-expense").classList.add("active");
       document.querySelector(".dark-bg").classList.add("active");
-      document.getElementsById("calculator").setAttribute("disabled");
+      document.getElementById("calculator").disabled = true;
       isActive = !isActive;
     },
     closeButton: function () {
@@ -268,6 +333,8 @@ export default {
       document.querySelector(".calculator").classList.remove("active");
       document.querySelector(".add-expense").classList.remove("active");
       document.querySelector(".dark-bg").classList.remove("active");
+      document.getElementById("add-expenses").disabled = false;
+      document.getElementById("calculator").disabled = false;
       isActive = false;
     },
     clear() {
@@ -330,7 +397,6 @@ export default {
 
 <style lang="scss" scoped>
 #captaincoin {
-  background-color: #e7e7e7;
   height: 100vh;
   color: #161616;
 }
@@ -396,8 +462,9 @@ export default {
 .wrapper-content {
   width: 80%;
   margin-left: 20%;
-  height: 100%;
-  overflow: scroll;
+  height: 122%;
+  background-color: #e7e7e7;
+  overflow: hidden;
 }
 .top-buttons {
   display: flex;
@@ -406,7 +473,7 @@ export default {
 }
 .top-buttons button {
   padding: 10px 0;
-  width: 32%;
+  width: 23%;
   text-align: center;
   background-color: #346751;
   font-size: 18px;
@@ -757,23 +824,24 @@ hr {
   font-size: 20px;
   font-weight: bold;
 }
-.add-expense input, .add-expense select {
+.add-expense input,
+.add-expense select {
   display: inline-block;
   width: 100%;
-  color: #4a4a4a;
+  color: #737373;
 }
-.add-expense .fa-times-circle{
+.add-expense .fa-times-circle {
   font-size: 22px;
   box-shadow: none;
   margin-right: 10px;
 }
-.add-expense h1{
+.add-expense h1 {
   font-weight: bold;
   font-size: 25px;
   text-align: center;
   padding-top: 25px;
 }
-.add-expense button{
+.add-expense button {
   width: 100%;
   display: block;
   text-align: center;
@@ -781,6 +849,10 @@ hr {
   margin-top: 40px;
   font-size: 18px;
 }
+.disabled {
+  pointer-events: none;
+}
+
 @media screen and (max-width: 992px) {
   .newlinks a {
     color: #ecdbba;
@@ -896,7 +968,8 @@ hr {
   #captaincoin {
     overflow: hidden;
     height: auto;
-    padding-bottom: 100px;
+    background-color: #e7e7e7;
+    padding-bottom: 85px;
   }
   .summary section,
   .summary-chart section,
@@ -928,6 +1001,9 @@ hr {
   .fa-times-circle {
     margin: 10px 10px 30px 0;
   }
+  .add-expense {
+    max-width: 80%;
+  }
 }
 @media screen and (max-width: 768px) {
   .summary section {
@@ -952,6 +1028,15 @@ hr {
   .fa-times-circle {
     margin: 10px 0px 30px 0;
     font-size: 20px;
+  }
+  .add-expense h1 {
+    font-size: 22px;
+  }
+  .add-expense label {
+    font-size: 17px;
+  }
+  .add-expense button {
+    font-size: 15px;
   }
 }
 </style>
