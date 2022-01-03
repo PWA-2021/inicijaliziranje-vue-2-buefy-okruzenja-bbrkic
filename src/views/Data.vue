@@ -181,6 +181,7 @@ input:focus {
   border-radius: 5px;
   border: 1px solid #346751;
   cursor: pointer;
+  font-family: "Dosis", sans-serif;
 }
 .monthly-expenses input,
 .other-expenses input,
@@ -197,6 +198,8 @@ input:focus {
   text-transform: uppercase;
   cursor: pointer;
   transition: 1s;
+  font-family: "Dosis", sans-serif !important;
+  font-size: 15px;
 }
 #back {
   float: left;
@@ -244,6 +247,7 @@ input:focus {
 .bottom-buttons {
   margin: 0 8%;
 }
+
 // ::before contents
 .monthly-incomes h2::before,
 .payment-date h2::before,
