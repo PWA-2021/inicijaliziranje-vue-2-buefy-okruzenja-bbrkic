@@ -42,7 +42,6 @@
           <button id="calculator" @click="toggleClassCalculator">
             Calculator
           </button>
-          <button>Calendar</button>
         </div>
         <div class="summary">
           <section>
@@ -147,45 +146,6 @@
           </section>
         </div>
 
-        <!-- CALCULATOR -->
-        <div class="calculator" v-bind:class="{ active: isActive }">
-          <i
-            class="fas fa-times-circle"
-            v-bind:class="{ active: isActive }"
-            @click="closeButton"
-          ></i>
-          <div class="result">{{ current || "0" }}</div>
-          <div class="calculator-row">
-            <div @click="clear" class="btn">C</div>
-            <div @click="sign" class="btn">+/-</div>
-            <div @click="percent" class="btn">%</div>
-            <div @click="divide" class="btn operator">÷</div>
-          </div>
-          <div class="calculator-row">
-            <div @click="append('7')" class="btn">7</div>
-            <div @click="append('8')" class="btn">8</div>
-            <div @click="append('9')" class="btn">9</div>
-            <div @click="times" class="btn operator">x</div>
-          </div>
-          <div class="calculator-row">
-            <div @click="append('4')" class="btn">4</div>
-            <div @click="append('5')" class="btn">5</div>
-            <div @click="append('6')" class="btn">6</div>
-            <div @click="minus" class="btn operator">-</div>
-          </div>
-          <div class="calculator-row">
-            <div @click="append('1')" class="btn">1</div>
-            <div @click="append('2')" class="btn">2</div>
-            <div @click="append('3')" class="btn">3</div>
-            <div @click="add" class="btn operator">+</div>
-          </div>
-          <div class="calculator-row">
-            <div @click="append('0')" class="btn zero">0</div>
-            <div @click="dot" class="btn">.</div>
-            <div @click="equal" class="btn operator">=</div>
-          </div>
-        </div>
-
         <!-- ADDING EXPENSES -->
         <div class="add-expense">
           <i
@@ -193,7 +153,9 @@
             v-bind:class="{ active: isActive }"
             @click="closeButton"
           ></i>
-          <h1>INPUT YOUR LATEST EXPENSES</h1>
+          <h1>Add expenses</h1>
+          <hr class="heading-underline" />
+          <p>Tell us all about your recent spendings.</p>
           <form action="" class="form-expense" @submit.prevent="submit">
             <label for="categories"
               >Select category:<br />
@@ -235,57 +197,80 @@
           </form>
         </div>
 
-        <!-- CALENDAR -->
-        <div class="calendar">
-          <v-sheet tile height="54" class="d-flex">
-            <v-btn icon class="ma-2" @click="$refs.calendar.prev()">
-              <v-icon>mdi-chevron-left</v-icon>
-            </v-btn>
-            <v-select
-              v-model="type"
-              :items="types"
-              dense
-              outlined
-              hide-details
-              class="ma-2"
-              label="type"
-            ></v-select>
-            <v-select
-              v-model="mode"
-              :items="modes"
-              dense
-              outlined
-              hide-details
-              label="event-overlap-mode"
-              class="ma-2"
-            ></v-select>
-            <v-select
-              v-model="weekday"
-              :items="weekdays"
-              dense
-              outlined
-              hide-details
-              label="weekdays"
-              class="ma-2"
-            ></v-select>
-            <v-spacer></v-spacer>
-            <v-btn icon class="ma-2" @click="$refs.calendar.next()">
-              <v-icon>mdi-chevron-right</v-icon>
-            </v-btn>
-          </v-sheet>
-          <v-sheet height="600">
-            <v-calendar
-              ref="calendar"
-              v-model="value"
-              :weekdays="weekday"
-              :type="type"
-              :events="events"
-              :event-overlap-mode="mode"
-              :event-overlap-threshold="30"
-              :event-color="getEventColor"
-              @change="getEvents"
-            ></v-calendar>
-          </v-sheet>
+        <!-- ADD NOTES -->
+        <div class="notes">
+          <i
+            class="fas fa-times-circle"
+            v-bind:class="{ active: isActive }"
+            @click="closeButton"
+          ></i>
+          <h1>Add notes</h1>
+          <hr class="heading-underline" />
+          <p>Make a list of the things you must do. </p>
+          <form action="" class="form-expense" @submit.prevent="submit">
+            <label for="note-description"
+              >Activity description:
+              <input
+                type="text"
+                id="description"
+                name="description"
+                placeholder="Enter activity description"
+                v-model="description"
+                required
+              /><br />
+            </label>
+            <label for="expected-cost"
+              >Expected costs:<br />
+              <input
+                type="number"
+                id="expected-cost"
+                name="expected-cost"
+                placeholder="How much money do you the cost will be?"
+                v-model="cost"
+                required
+              />
+              <button type="submit">Submit</button>
+            </label>
+          </form>
+        </div>
+
+        <!-- CALCULATOR -->
+        <div class="calculator" v-bind:class="{ active: isActive }">
+          <i
+            class="fas fa-times-circle"
+            v-bind:class="{ active: isActive }"
+            @click="closeButton"
+          ></i>
+          <div class="result">{{ current || "0" }}</div>
+          <div class="calculator-row">
+            <div @click="clear" class="btn">C</div>
+            <div @click="sign" class="btn">+/-</div>
+            <div @click="percent" class="btn">%</div>
+            <div @click="divide" class="btn operator">÷</div>
+          </div>
+          <div class="calculator-row">
+            <div @click="append('7')" class="btn">7</div>
+            <div @click="append('8')" class="btn">8</div>
+            <div @click="append('9')" class="btn">9</div>
+            <div @click="times" class="btn operator">x</div>
+          </div>
+          <div class="calculator-row">
+            <div @click="append('4')" class="btn">4</div>
+            <div @click="append('5')" class="btn">5</div>
+            <div @click="append('6')" class="btn">6</div>
+            <div @click="minus" class="btn operator">-</div>
+          </div>
+          <div class="calculator-row">
+            <div @click="append('1')" class="btn">1</div>
+            <div @click="append('2')" class="btn">2</div>
+            <div @click="append('3')" class="btn">3</div>
+            <div @click="add" class="btn operator">+</div>
+          </div>
+          <div class="calculator-row">
+            <div @click="append('0')" class="btn zero">0</div>
+            <div @click="dot" class="btn">.</div>
+            <div @click="equal" class="btn operator">=</div>
+          </div>
         </div>
 
         <!-- DARK BACKGROUND OVERLAY -->
@@ -318,21 +303,37 @@ export default {
       console.log("clicked!!");
       document.querySelector(".calculator").classList.add("active");
       document.querySelector(".dark-bg").classList.add("active");
+
       document.getElementById("add-expenses").disabled = true;
+      document.getElementById("add-notes").disabled = true;
       isActive = !isActive;
     },
     toggleClassExpense: function () {
       console.log("clicked!!");
       document.querySelector(".add-expense").classList.add("active");
       document.querySelector(".dark-bg").classList.add("active");
+
       document.getElementById("calculator").disabled = true;
+      document.getElementById("add-notes").disabled = true;
+      isActive = !isActive;
+    },
+    toggleClassNote: function () {
+      console.log("clicked!!");
+      document.querySelector(".notes").classList.add("active");
+      document.querySelector(".dark-bg").classList.add("active");
+
+      document.getElementById("calculator").disabled = true;
+      document.getElementById("add-expenses  ").disabled = true;
       isActive = !isActive;
     },
     closeButton: function () {
       console.log("clicked!!");
       document.querySelector(".calculator").classList.remove("active");
       document.querySelector(".add-expense").classList.remove("active");
+      document.querySelector(".notes").classList.remove("active");
       document.querySelector(".dark-bg").classList.remove("active");
+
+      document.getElementById("add-notes").disabled = false;
       document.getElementById("add-expenses").disabled = false;
       document.getElementById("calculator").disabled = false;
       isActive = false;
@@ -473,7 +474,7 @@ export default {
 }
 .top-buttons button {
   padding: 10px 0;
-  width: 23%;
+  width: 32%;
   text-align: center;
   background-color: #346751;
   font-size: 18px;
@@ -654,7 +655,8 @@ hr {
   visibility: hidden;
 }
 .to-do button,
-.add-expense button {
+.add-expense button,
+.notes button {
   font-family: "Dosis", sans-serif;
   background-color: #346751;
   color: #ecdbba;
@@ -800,7 +802,14 @@ hr {
 }
 
 // ADD EXPENSE
-.add-expense {
+.heading-underline {
+  border-bottom: 4px solid #c84b31;
+  border-radius: 8px;
+  width: 80px;
+  margin: 0 auto;
+}
+.add-expense,
+.notes {
   width: 600px;
   background-color: #ffffff;
   color: #346751;
@@ -814,10 +823,12 @@ hr {
   box-shadow: 0 2px 12px 1px rgb(0 0 0 / 60%);
   transition: 200ms ease-in-out;
 }
-.add-expense.active {
+.add-expense.active,
+.notes.active {
   transform: translate(-50%, -50%) scale(1);
 }
-.add-expense label {
+.add-expense label,
+.notes label {
   display: block;
   width: 100%;
   margin-top: 20px;
@@ -825,23 +836,35 @@ hr {
   font-weight: bold;
 }
 .add-expense input,
-.add-expense select {
+.add-expense select,
+.notes input{
   display: inline-block;
   width: 100%;
   color: #737373;
 }
-.add-expense .fa-times-circle {
+.add-expense .fa-times-circle,
+.notes .fa-times-circle {
   font-size: 22px;
   box-shadow: none;
   margin-right: 10px;
 }
-.add-expense h1 {
+.add-expense h1,
+.notes h1 {
+  color: #4a4a4a;
   font-weight: bold;
-  font-size: 25px;
+  font-size: 30px;
   text-align: center;
   padding-top: 25px;
 }
-.add-expense button {
+.add-expense p,
+.notes p {
+  text-align: center;
+  font-size: 20px;
+  margin-top: 10px;
+  color: #4a4a4a;
+}
+.add-expense button,
+.notes button {
   width: 100%;
   display: block;
   text-align: center;
@@ -852,7 +875,6 @@ hr {
 .disabled {
   pointer-events: none;
 }
-
 @media screen and (max-width: 992px) {
   .newlinks a {
     color: #ecdbba;
