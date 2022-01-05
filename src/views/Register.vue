@@ -12,7 +12,7 @@
     </div>
     <div class="register-information">
       <h1>Registration</h1>
-      <form action="">
+      <form @submit.prevent="pressed">
         <label for="firstname"
           >Firstname:
           <input
@@ -38,6 +38,7 @@
             id="email"
             name="email"
             placeholder="enter your email"
+            v-model="email"
           />
         </label>
         <label for="password"
@@ -47,6 +48,7 @@
             id="password"
             name="password"
             placeholder="enter your password"
+            v-model="password"
           />
         </label>
         <label for="password2"
@@ -59,7 +61,7 @@
           />
         </label>
         <router-link to="/data" target="self"
-          ><button>Create account</button></router-link
+          ><button type="submit">Create account</button></router-link
         >
       </form>
     </div>
@@ -67,7 +69,21 @@
 </template>
 
 <script>
+import * as firebase from "firebase/app";
+import "firebase/auth";
+
 export default {
+  methods:{
+    async pressed(){
+      try{
+        const user = firebase.auth().createUserWithEmailAndPassword(this.email, this.password);
+        console.log(user);
+        this.$router.replace({name: "data"});
+      }catch(err){
+        console.log(err)
+      }
+    }
+  },
   name: "register",
   components: {
     // register,
