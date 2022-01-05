@@ -206,7 +206,7 @@
           ></i>
           <h1>Add notes</h1>
           <hr class="heading-underline" />
-          <p>Make a list of the things you must do. </p>
+          <p>Make a list of the things you must do.</p>
           <form action="" class="form-expense" @submit.prevent="submit">
             <label for="note-description"
               >Activity description:
@@ -337,6 +337,7 @@ export default {
       document.getElementById("add-expenses").disabled = false;
       document.getElementById("calculator").disabled = false;
       isActive = false;
+      // this.current = "";
     },
     clear() {
       this.current = "";
@@ -837,7 +838,7 @@ hr {
 }
 .add-expense input,
 .add-expense select,
-.notes input{
+.notes input {
   display: inline-block;
   width: 100%;
   color: #737373;
