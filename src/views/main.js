@@ -1,18 +1,16 @@
 import Vue from "vue";
 import App from "./App.vue";
-import router from "./router";
 
+import router from "./router";
 import Buefy from "buefy";
 import "buefy/dist/buefy.css";
 import VueTypedJs from "vue-typed-js";
-import VCalendar from 'v-calendar';
+import axios from "axios";
 
+Vue.prototype.$axios = "axios";
 Vue.config.productionTip = false;
 Vue.use(Buefy);
 Vue.use(VueTypedJs);
-Vue.use(VCalendar, {
-  componentPrefix: 'vc',  
-});
 
 new Vue({
   router,
@@ -36,6 +34,7 @@ menubar.addEventListener("click", function () {
   links.classList.toggle("newlinks");
   vertical_navbar.classList.toggle("newlinks");
 });
+// /ANIMATED MENU
 
 // SCROLL TO TOP
 const toTop = document.querySelector(".to-top");
@@ -47,6 +46,8 @@ window.addEventListener("scroll", () => {
     toTop.classList.remove("active");
   }
 });
+// /SCROLL TO TOP
+
 // POPUP LOGIN
 document.querySelector("#login").addEventListener("click", function () {
   document.querySelector(".popup").classList.add("active");
@@ -58,5 +59,23 @@ document
     document.querySelector(".popup").classList.remove("active");
     document.querySelector(".dark-bg").classList.remove("active");
   });
+// /POPUP LOGIN
 
-  
+// FIREBASE
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDEp2GnsZW26AMrQ5uvBDbqdccGlWZIzTU",
+  authDomain: "captaincoin-169ac.firebaseapp.com",
+  databaseURL:
+    "https://captaincoin-169ac-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "captaincoin-169ac",
+  storageBucket: "captaincoin-169ac.appspot.com",
+  messagingSenderId: "351537290089",
+  appId: "1:351537290089:web:1d04c93df5c48243e57bf8",
+  measurementId: "G-ZGP6PZQ5K4",
+};
+
+const app = initializeApp(firebaseConfig);
+// /FIREBASE
