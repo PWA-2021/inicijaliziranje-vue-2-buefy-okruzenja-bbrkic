@@ -1,6 +1,6 @@
 import Vue from "vue";
 import App from "./App.vue";
-
+import Store from "./store";
 import router from "./router";
 import Buefy from "buefy";
 import "buefy/dist/buefy.css";
@@ -11,11 +11,6 @@ Vue.prototype.$axios = "axios";
 Vue.config.productionTip = false;
 Vue.use(Buefy);
 Vue.use(VueTypedJs);
-
-new Vue({
-  router,
-  render: (h) => h(App),
-}).$mount("#app");
 
 Vue.config.productionTip = false;
 
@@ -63,7 +58,6 @@ document
 
 // FIREBASE
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDEp2GnsZW26AMrQ5uvBDbqdccGlWZIzTU",
@@ -77,5 +71,15 @@ const firebaseConfig = {
   measurementId: "G-ZGP6PZQ5K4",
 };
 
-const app = initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
+
+firebase.auth().onAuthStateChanged(user => {
+  store.dispatch("fetchUser", user);
+});
 // /FIREBASE
+
+new Vue({
+  router,
+  store,
+  render: (h) => h(App),
+}).$mount("#app");
