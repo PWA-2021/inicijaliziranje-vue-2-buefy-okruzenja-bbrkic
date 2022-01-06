@@ -76,31 +76,36 @@
               <div class="text">
                 <h4>Welcome back!</h4>
                 <p>Enter your credentials to access your account.</p>
-                <div class="form-element">
-                  <label for="email">Email</label>
-                  <input
-                    type="text"
-                    placeholder="Enter your email"
-                    name="email"
-                    required
-                  />
-                </div>
-                <div class="form-element">
-                  <label for="password">Password</label>
-                  <input
-                    type="password"
-                    placeholder="Enter your password"
-                    name="password"
-                    required
-                  />
-                </div>
-                <div class="form-element">
-                  <router-link to="/captaincoin" target="self"
-                    ><button type="submit" class="login">
-                      Login
-                    </button></router-link
-                  >
-                </div>
+                <form action="#" @submit.prevent="submit">
+                  <span v-if="error" class="error">{{ error }}</span>
+                  <div class="form-element">
+                    <label for="email">Email</label>
+                    <input
+                      type="text"
+                      placeholder="Enter your email"
+                      name="email"
+                      v-model="email"
+                      required
+                    />
+                  </div>
+                  <div class="form-element">
+                    <label for="password">Password</label>
+                    <input
+                      type="password"
+                      placeholder="Enter your password"
+                      name="password"
+                      v-model="password"
+                      required
+                    />
+                  </div>
+                  <div class="form-element">
+                    <router-link to="/captaincoin" target="self"
+                      ><button type="submit" class="login">
+                        Login
+                      </button></router-link
+                    >
+                  </div>
+                </form>
               </div>
             </div>
           </div>
@@ -285,7 +290,9 @@
 
 <script>
 //import data from "../views/Home.vue";
-import userService from '../services/usersService'
+import firebase from "../views/Home.vue";
+import userService from "../services/usersService";
+
 export default {
   name: "home",
   components: {},
@@ -294,6 +301,11 @@ export default {
     return {
       users: [],
       scrollPosition: null,
+
+      // login form
+      email: "",
+      password: "",
+      error: null,
     };
   },
   methods: {
@@ -303,6 +315,17 @@ export default {
     gotoContact() {
       let route = this.$router.resolve({ path: "/Login.vue" });
       window.open(route.href);
+    },
+    submit() {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.email, this.password)
+        .then(function () {
+          this.$router.replace({ name: "data" });
+        })
+        .catch(function (err) {
+          this.error = err.message;
+        });
     },
   },
   mounted() {
