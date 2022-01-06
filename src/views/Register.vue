@@ -12,7 +12,8 @@
     </div>
     <div class="register-information">
       <h1>Registration</h1>
-      <form @submit.prevent="pressed">
+      <form @submit.prevent="submit">
+        <span v-if="error" class="error">{{ error }}</span>
         <label for="firstname"
           >Firstname:
           <input
@@ -20,6 +21,7 @@
             id="firstname"
             name="firstname"
             placeholder="enter your firstname"
+            v-model="firstname"
           />
         </label>
         <label for="lastname"
@@ -29,6 +31,7 @@
             id="lastname"
             name="lastname"
             placeholder="enter your lastname"
+            v-model="lastname"
           />
         </label>
         <label for="email"
@@ -58,6 +61,7 @@
             id="password2"
             name="password2"
             placeholder="confirm your password"
+            v-model="password2"
           />
         </label>
         <router-link to="/data" target="self"
@@ -73,16 +77,32 @@ import * as firebase from "firebase/app";
 import "firebase/auth";
 
 export default {
-  methods:{
-    async pressed(){
-      try{
-        const user = firebase.auth().createUserWithEmailAndPassword(this.email, this.password);
-        console.log(user);
-        this.$router.replace({name: "data"});
-      }catch(err){
-        console.log(err)
-      }
-    }
+  data() {
+    return {
+      firstname: "",
+      lastname: "",
+      email: "",
+      password: "",
+      password2: "",
+      error: null,
+    };
+  },
+  methods: {
+    submit() {
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.email, this.password)
+        .then((data) => {
+          data.user
+            .updateProfile({
+              displayName: this.firstname,
+            })
+            .then(() => {});
+        })
+        .catch((err) => {
+          this.error = err.message;
+        });
+    },
   },
   name: "register",
   components: {
