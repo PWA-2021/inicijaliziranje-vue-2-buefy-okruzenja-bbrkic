@@ -15,7 +15,7 @@ body {
   overflow: hidden;
 }
 textarea {
-  resize: none;
+  resize: vertical;
 }
 .main-bg-image {
   height: 710px;
@@ -611,14 +611,14 @@ p::before {
   font-size: 20px;
 }
 .contacts form input:focus,
-.contacts .textarea:focus {
-  border-color: #346751 !important;
-  box-shadow: inset 0 0.0625em 0.125em #34675133 !important;
+.contacts textarea:focus {
+  border-color: #346751;
+  box-shadow: inset 0 0.0625em 0.125em #34675133;
 }
-.contacts form textarea:focus {
+.contacts textarea:focus {
   background-color: #34675133;
   transition: 0.2s;
-  border: 1px solid #34675133 !important;
+  padding: 5px;
 }
 .toTopBefore {
   position: fixed;
