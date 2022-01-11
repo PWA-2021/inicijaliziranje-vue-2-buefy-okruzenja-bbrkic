@@ -313,7 +313,7 @@ export default {
       this.scrollPosition = window.scrollY;
     },
     gotoContact() {
-      let route = this.$router.resolve({ path: "/Login.vue" });
+      let route = this.$router.resolve({ path: "/Home.vue" });
       window.open(route.href);
     },
     submit() {
