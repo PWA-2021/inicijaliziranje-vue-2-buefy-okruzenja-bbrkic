@@ -19,7 +19,6 @@
           <input
             type="firstname"
             id="firstname"
-            name="firstname"
             placeholder="enter your firstname"
             v-model="firstname"
           />
@@ -29,7 +28,6 @@
           <input
             type="lastname"
             id="lastname"
-            name="lastname"
             placeholder="enter your lastname"
             v-model="lastname"
           />
@@ -39,7 +37,6 @@
           <input
             type="email"
             id="email"
-            name="email"
             placeholder="enter your email"
             v-model="email"
           />
@@ -49,7 +46,6 @@
           <input
             type="password"
             id="password"
-            name="password"
             placeholder="enter your password"
             v-model="password"
           />
@@ -57,16 +53,13 @@
         <label for="password2"
           >Confirm password:
           <input
-            type="password2"
+            type="password"
             id="password2"
-            name="password2"
             placeholder="confirm your password"
             v-model="password2"
           />
         </label>
-        <router-link to="/data" target="self"
-          ><button type="submit">Create account</button></router-link
-        >
+        <button type="submit" @click="submit">Create account</button>
       </form>
     </div>
   </div>
@@ -88,8 +81,9 @@ export default {
     };
   },
   methods: {
-    submit() {
-      firebase
+    async submit() {
+      console.log(this.email, this.password);
+      await firebase
         .auth()
         .createUserWithEmailAndPassword(this.email, this.password)
         .then((data) => {
@@ -97,7 +91,9 @@ export default {
             .updateProfile({
               displayName: this.firstname,
             })
-            .then(() => {});
+            .then(() => {
+              this.$router.replace("/data");
+            });
         })
         .catch((err) => {
           this.error = err.message;
