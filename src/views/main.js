@@ -1,13 +1,13 @@
 import Vue from "vue";
 import App from "./App.vue";
-import Store from "./store";
+import store from "./store";
 import router from "./router";
 import Buefy from "buefy";
 import "buefy/dist/buefy.css";
 import VueTypedJs from "vue-typed-js";
 import axios from "axios";
 
-Vue.prototype.$axios = "axios";
+Vue.prototype.$axios = axios;
 Vue.config.productionTip = false;
 Vue.use(Buefy);
 Vue.use(VueTypedJs);
@@ -57,7 +57,7 @@ document
 // /POPUP LOGIN
 
 // FIREBASE
-import { initializeApp } from "firebase/app";
+import firebase from "firebase/app";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDEp2GnsZW26AMrQ5uvBDbqdccGlWZIzTU",
@@ -73,7 +73,7 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-firebase.auth().onAuthStateChanged(user => {
+firebase.auth().onAuthStateChanged((user) => {
   store.dispatch("fetchUser", user);
 });
 // /FIREBASE
