@@ -239,22 +239,32 @@
         </article>
 
         <article>
-          <form action="">
+          <form @submit.prevent="sendEmail">
             <div class="name-information">
-              <b-field label="FIRST NAME">
-                <b-input v-model="name"></b-input>
-              </b-field>
-              <b-field label="LAST NAME">
-                <b-input v-model="name"></b-input> </b-field
-              ><br />
+              <div class="element">
+                <label
+                  >Firstname
+                  <input type="text" v-model="firstname" name="firstname" />
+                </label>
+              </div>
+              <div class="element">
+                <label
+                  >Lastname
+                  <input type="text" v-model="lastname" name="lastname" />
+                </label>
+              </div>
             </div>
-            <b-field label="EMAIL">
-              <b-input type="email" maxlength="30"> </b-input>
-            </b-field>
-            <b-field label="MESSAGE">
-              <b-input maxlength="500" type="textarea"></b-input>
-            </b-field>
-            <b-button type="is-success">SUBMIT</b-button>
+            <label
+              >Email
+              <input type="email" v-model="toEmail" name="toEmail" />
+            </label>
+            <label for="message"
+              >Message
+              <textarea name="message" v-model="message" cols="30" rows="10">
+              </textarea>
+            </label>
+
+            <input type="submit" value="submit" />
           </form>
         </article>
       </div>
@@ -290,6 +300,7 @@
 
 <script>
 //import data from "../views/Home.vue";
+import emailjs from "emailjs-com";
 import firebase from "../views/Home.vue";
 import userService from "../services/usersService";
 
@@ -306,12 +317,44 @@ export default {
       email: "",
       password: "",
       error: null,
+
+      // contact us form
+      firstname: "",
+      lastname: "",
+      toEmail: "",
+      message: "",
     };
   },
   methods: {
     updateScroll() {
       this.scrollPosition = window.scrollY;
     },
+
+    // CONTACT US FORM
+    sendEmail(e) {
+      try {
+        emailjs.sendForm(
+          "service_lqivm2d",
+          "template_cmkzz3q",
+          e.target,
+          "user_HAvXbKaVfznM5LVHE1Tzs",
+          {
+            firstname: this.firstname,
+            lastname: this.lastname,
+            toEmail: this.toEmail,
+            message: this.message,
+          }
+        );
+      } catch (error) {
+        console.log({ error });
+      }
+      // Reset form field
+      this.firstname = "";
+      this.lastname = "";
+      this.toEmail = "";
+      this.message = "";
+    },
+
     gotoContact() {
       let route = this.$router.resolve({ path: "/Home.vue" });
       window.open(route.href);
