@@ -66,60 +66,60 @@
 </template>
 
 <script>
-import * as firebase from "firebase/app";
-import "firebase/auth";
+import firebase from 'firebase/compat/app'
+import 'firebase/compat/auth'
 
 export default {
   data() {
     return {
-      firstname: "",
-      lastname: "",
-      email: "",
-      password: "",
-      password2: "",
-      error: null,
-    };
+      firstname: '',
+      lastname: '',
+      email: '',
+      password: '',
+      password2: '',
+      error: null
+    }
   },
   methods: {
     async submit() {
-      console.log(this.email, this.password);
+      console.log(this.email, this.password)
       await firebase
         .auth()
         .createUserWithEmailAndPassword(this.email, this.password)
         .then((data) => {
           data.user
             .updateProfile({
-              displayName: this.firstname,
+              displayName: this.firstname
             })
             .then(() => {
-              this.$router.replace("/data");
-            });
+              this.$router.replace('/data')
+            })
         })
         .catch((err) => {
-          this.error = err.message;
-        });
-    },
+          this.error = err.message
+        })
+    }
   },
-  name: "register",
+  name: 'register',
   components: {
     // register,
-  },
-};
+  }
+}
 </script>
 
 <style lang="scss" scoped>
 // fonts
-@import url("https://fonts.googleapis.com/css2?family=Dosis");
+@import url('https://fonts.googleapis.com/css2?family=Dosis');
 
 body {
-  font-family: "Dosis", sans-serif !important;
+  font-family: 'Dosis', sans-serif !important;
 }
 html {
   height: 100%;
 }
 .register {
   min-height: 100vh;
-  background-image: url("../images/image2.jpg");
+  background-image: url('../images/image2.jpg');
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
@@ -141,12 +141,11 @@ html {
 .data,
 .register-information {
   float: left;
-}
-.register-information {
+  position: relative;
+  z-index: 100;
   width: 40%;
   padding: 6% 5% 5% 5%;
   backdrop-filter: blur(5px);
-  background-color: #16161642;
   min-height: 100vh;
 }
 .data {
@@ -235,7 +234,7 @@ form button {
   border: 0px;
 }
 form button:after {
-  content: "»";
+  content: '»';
   position: relative;
   opacity: 0;
 }
