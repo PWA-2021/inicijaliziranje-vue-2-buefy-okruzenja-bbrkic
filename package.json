@@ -17,6 +17,7 @@
     "buefy": "^0.9.11",
     "chart.js": "^3.6.2",
     "core-js": "^3.6.5",
+    "emailjs-com": "^3.2.0",
     "firebase": "^9.6.2",
     "firebase-admin": "^10.0.1",
     "vue": "^2.6.14",
