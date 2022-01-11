@@ -14,6 +14,9 @@ body {
   margin: 0 auto;
   overflow: hidden;
 }
+textarea {
+  resize: none;
+}
 .main-bg-image {
   height: 710px;
   background-image: url("images/image1.jpg");
@@ -499,14 +502,6 @@ header nav a:hover {
   box-shadow: 0 2px 12px 1px rgb(0 0 0 / 20%);
   border-radius: 5px;
 }
-.name-information .field {
-  display: block;
-  width: 45%;
-  float: left;
-}
-.name-information .field:first-child {
-  margin-right: 10%;
-}
 .contacts i {
   color: #346751;
   font-size: 30px;
@@ -517,6 +512,54 @@ header nav a:hover {
 .contacts i:hover {
   transform: scale(1.1);
   transition: 0.2s;
+}
+.contacts form label {
+  text-transform: uppercase;
+  font-weight: bold;
+  display: block;
+}
+.name-information form label {
+  margin-top: 0;
+}
+.name-information {
+  padding-bottom: 20px;
+  overflow: hidden;
+}
+.contacts form label[for="message"] {
+  margin-top: 20px;
+}
+.contacts form input,
+.contacts form textarea {
+  width: 100%;
+  font-family: "Dosis", sans-serif;
+  border-radius: 5px;
+  margin-top: 5px;
+  border: 1px solid #3467516c;
+}
+.contacts form textarea {
+  border: 1px solid #3467516c;
+}
+
+.contacts form input[type="submit"] {
+  color: #e7e7e7;
+  text-transform: uppercase;
+  background-color: #346751;
+  display: block;
+  padding: 5px 30px;
+  font-size: 16px;
+  width: initial;
+  margin-top: 30px;
+  cursor: pointer;
+}
+.contacts form input[type="submit"]:active {
+  transform: scale(1.05);
+}
+.element {
+  width: 47%;
+  float: left;
+}
+.element:last-child {
+  margin-left: 6%;
 }
 .map {
   background-color: #161616;
@@ -568,13 +611,14 @@ p::before {
   font-size: 20px;
 }
 .contacts form input:focus,
-.contacts .textarea:focus,
-.contacts .checkbox input[type="checkbox"] + .check {
+.contacts .textarea:focus {
   border-color: #346751 !important;
   box-shadow: inset 0 0.0625em 0.125em #34675133 !important;
 }
-.contacts .checkbox input[type="checkbox"]:checked + .check {
-  background-color: #346751 !important;
+.contacts form textarea:focus {
+  background-color: #34675133;
+  transition: 0.2s;
+  border: 1px solid #34675133 !important;
 }
 .toTopBefore {
   position: fixed;
@@ -797,11 +841,6 @@ p::before {
   .main-buttons button {
     width: 300px;
   }
-  .name-information .field {
-    float: none;
-    width: 100%;
-    margin-right: 0;
-  }
   .popup {
     width: 90%;
   }
@@ -846,5 +885,13 @@ p::before {
     background-color: #34675133;
     box-shadow: #34675133 0px 8px 14px;
     border-color: #34675133;
+  }
+  .element {
+    float: none;
+    width: 100%;
+    margin-right: 0;
+  }
+  .element:last-child {
+    margin: 20px 0 0 0;
   }
 }
