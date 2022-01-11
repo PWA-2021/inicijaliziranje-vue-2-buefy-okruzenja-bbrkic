@@ -21,6 +21,7 @@
             id="firstname"
             placeholder="enter your firstname"
             v-model="firstname"
+            required
           />
         </label>
         <label for="lastname"
@@ -30,6 +31,7 @@
             id="lastname"
             placeholder="enter your lastname"
             v-model="lastname"
+            required
           />
         </label>
         <label for="email"
@@ -39,6 +41,7 @@
             id="email"
             placeholder="enter your email"
             v-model="email"
+            required
           />
         </label>
         <label for="password"
@@ -48,6 +51,7 @@
             id="password"
             placeholder="enter your password"
             v-model="password"
+            required
           />
         </label>
         <label for="password2"
@@ -57,6 +61,7 @@
             id="password2"
             placeholder="confirm your password"
             v-model="password2"
+            required
           />
         </label>
         <button type="submit" @click="submit">Create account</button>
@@ -138,6 +143,10 @@ html {
   z-index: 0;
   width: 100%;
 }
+.register-information{
+  backdrop-filter: blur(5px);
+  background-color: #00000013;
+}
 .data,
 .register-information {
   float: left;
@@ -145,7 +154,6 @@ html {
   z-index: 100;
   width: 40%;
   padding: 6% 5% 5% 5%;
-  backdrop-filter: blur(5px);
   min-height: 100vh;
 }
 .data {
@@ -191,6 +199,7 @@ html {
   border: 0px;
   border-bottom: 1px solid #ecdbba;
   position: relative;
+  color: #5aa897;
 }
 .register-information input:focus {
   color: #5aa897;
@@ -264,6 +273,7 @@ form button:hover:after {
     float: none;
     width: 80%;
     margin: 0 auto;
+    min-height: auto;
   }
   .data h1 {
     text-align: center;
@@ -303,7 +313,7 @@ form button:hover:after {
   }
   .top-layer,
   .register {
-    height: 15 0vh;
+    height: 150vh;
   }
   .register-information h1 {
     text-align: center;
@@ -312,5 +322,8 @@ form button:hover:after {
     margin: 40px auto 0 auto;
     display: block;
   }
+}
+@media screen and (max-width: 576px) {
+
 }
 </style>
