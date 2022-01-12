@@ -550,6 +550,7 @@ header nav a:hover {
   width: initial;
   margin-top: 30px;
   cursor: pointer;
+  float: right;
 }
 .contacts form input[type="submit"]:active {
   transform: scale(1.05);
