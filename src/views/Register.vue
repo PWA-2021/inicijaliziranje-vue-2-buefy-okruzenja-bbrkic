@@ -56,37 +56,35 @@
             type="password"
             id="password2"
             placeholder="confirm your password"
-            v-model="password"
+            v-model="password2"
           />
         </label>
         <button type="submit" @click="submit">Create account</button>
+        <span v-if="!this.submit" class="error"
+          >Greška! Lozinke nisu iste!</span
+        >
       </form>
     </div>
   </div>
 </template>
 
 <script>
-// import useValidate from "@vuelidate/core";
-// import { required } from "@vuelidate/validators";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 
 export default {
   data() {
     return {
-      // v$: useValidate(),
-      // email: "",
-      // password: {
-      //   password: "",
-      //   confirm: "",
-      // },
       error: null,
     };
   },
   methods: {
     async submit() {
-      // this.v$.$validate();
-      // if (!this.v$.$error) {
+      if (
+        this.password.length > 0 &&
+        this.password2 > 0 &&
+        this.password === this.password2
+      ) {
         console.log(this.email, this.password);
         await firebase
           .auth()
@@ -103,20 +101,11 @@ export default {
           .catch((err) => {
             this.error = err.message;
           });
-      // } else {
-      //   alert("Form failed validation");
-      // }
+      } else {
+        console.log("Greška! Lozinke nisu iste!");
+      }
     },
   },
-  // validations() {
-  //   return {
-  //     email: { required },
-  //     password: {
-  //       password: { required },
-  //       confirm: { required },
-  //     },
-  //   };
-  // },
   name: "register",
   components: {
     // register,
@@ -156,21 +145,18 @@ html {
   width: 100%;
 }
 .register-information {
+  width: 40%;
   backdrop-filter: blur(5px);
   background-color: #00000013;
+  float: left;
 }
 .data,
 .register-information {
-  float: left;
-  position: relative;
-  z-index: 100;
-  width: 40%;
   padding: 6% 5% 5% 5%;
   min-height: 100vh;
 }
 .data {
   width: 60%;
-  padding: 6% 5% 5% 5%;
   float: right;
 }
 .register-information h1 {
@@ -197,7 +183,7 @@ html {
 }
 .data p {
   position: relative;
-  font-size: 25px;
+  font-size: 20px;
   top: 340px;
   color: #ecdbba;
   text-shadow: 2px 5px 6px #000000be;
