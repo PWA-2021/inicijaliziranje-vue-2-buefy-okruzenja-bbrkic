@@ -21,7 +21,6 @@
             id="firstname"
             placeholder="enter your firstname"
             v-model="firstname"
-            required
           />
         </label>
         <label for="lastname"
@@ -31,7 +30,6 @@
             id="lastname"
             placeholder="enter your lastname"
             v-model="lastname"
-            required
           />
         </label>
         <label for="email"
@@ -41,7 +39,6 @@
             id="email"
             placeholder="enter your email"
             v-model="email"
-            required
           />
         </label>
         <label for="password"
@@ -51,7 +48,6 @@
             id="password"
             placeholder="enter your password"
             v-model="password"
-            required
           />
         </label>
         <label for="password2"
@@ -60,8 +56,7 @@
             type="password"
             id="password2"
             placeholder="confirm your password"
-            v-model="password2"
-            required
+            v-model="password"
           />
         </label>
         <button type="submit" @click="submit">Create account</button>
@@ -71,60 +66,77 @@
 </template>
 
 <script>
-import firebase from 'firebase/compat/app'
-import 'firebase/compat/auth'
+// import useValidate from "@vuelidate/core";
+// import { required } from "@vuelidate/validators";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
 
 export default {
   data() {
     return {
-      firstname: '',
-      lastname: '',
-      email: '',
-      password: '',
-      password2: '',
-      error: null
-    }
+      // v$: useValidate(),
+      // email: "",
+      // password: {
+      //   password: "",
+      //   confirm: "",
+      // },
+      error: null,
+    };
   },
   methods: {
     async submit() {
-      console.log(this.email, this.password)
-      await firebase
-        .auth()
-        .createUserWithEmailAndPassword(this.email, this.password)
-        .then((data) => {
-          data.user
-            .updateProfile({
-              displayName: this.firstname
-            })
-            .then(() => {
-              this.$router.replace('/data')
-            })
-        })
-        .catch((err) => {
-          this.error = err.message
-        })
-    }
+      // this.v$.$validate();
+      // if (!this.v$.$error) {
+        console.log(this.email, this.password);
+        await firebase
+          .auth()
+          .createUserWithEmailAndPassword(this.email, this.password)
+          .then((data) => {
+            data.user
+              .updateProfile({
+                displayName: this.firstname,
+              })
+              .then(() => {
+                this.$router.replace("/data");
+              });
+          })
+          .catch((err) => {
+            this.error = err.message;
+          });
+      // } else {
+      //   alert("Form failed validation");
+      // }
+    },
   },
-  name: 'register',
+  // validations() {
+  //   return {
+  //     email: { required },
+  //     password: {
+  //       password: { required },
+  //       confirm: { required },
+  //     },
+  //   };
+  // },
+  name: "register",
   components: {
     // register,
-  }
-}
+  },
+};
 </script>
 
 <style lang="scss" scoped>
 // fonts
-@import url('https://fonts.googleapis.com/css2?family=Dosis');
+@import url("https://fonts.googleapis.com/css2?family=Dosis");
 
 body {
-  font-family: 'Dosis', sans-serif !important;
+  font-family: "Dosis", sans-serif !important;
 }
 html {
   height: 100%;
 }
 .register {
   min-height: 100vh;
-  background-image: url('../images/image2.jpg');
+  background-image: url("../images/image2.jpg");
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
@@ -143,7 +155,7 @@ html {
   z-index: 0;
   width: 100%;
 }
-.register-information{
+.register-information {
   backdrop-filter: blur(5px);
   background-color: #00000013;
 }
@@ -243,7 +255,7 @@ form button {
   border: 0px;
 }
 form button:after {
-  content: '»';
+  content: "»";
   position: relative;
   opacity: 0;
 }
@@ -324,6 +336,5 @@ form button:hover:after {
   }
 }
 @media screen and (max-width: 576px) {
-
 }
 </style>
