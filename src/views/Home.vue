@@ -73,6 +73,7 @@
                 </div>
               </div>
 
+              <!--LOGIN -->
               <div class="text">
                 <h4>Welcome back!</h4>
                 <p>Enter your credentials to access your account.</p>
