@@ -22,6 +22,12 @@
             placeholder="enter your firstname"
             v-model="firstname"
           />
+          <span v-if="!$v.firstname.required && $v.firstname.$dirty"
+            >Firstname is missing!</span
+          >
+          <span v-if="!$v.firstname.alpha && $v.firstname.$dirty"
+            >Invalid input!</span
+          >
         </label>
         <label for="lastname"
           >Lastname:
@@ -31,6 +37,12 @@
             placeholder="enter your lastname"
             v-model="lastname"
           />
+          <span v-if="!$v.lastname.required && $v.lastname.$dirty"
+            >Lastname is missing!</span
+          >
+          <span v-if="!$v.lastname.alpha && $v.lastname.$dirty"
+            >Invalid input!</span
+          >
         </label>
         <label for="email"
           >Email:
@@ -40,6 +52,10 @@
             placeholder="enter your email"
             v-model="email"
           />
+          <span
+            v-if="(!$v.email.required || !$v.email.email) && $v.email.$dirty"
+            >Valid Email is missing!</span
+          >
         </label>
         <label for="password"
           >Password:
@@ -49,6 +65,18 @@
             placeholder="enter your password"
             v-model="password"
           />
+          <span v-if="!$v.password.required && $v.password.$dirty"
+            >Password is missing!</span
+          >
+          <span
+            v-if="
+              (!$v.password.minLength || !$v.password.maxLength) &&
+              $v.password.$dirty
+            "
+            >Password must be between
+            {{ $v.password.$params.minLength.min }} and
+            {{ $v.password.$params.maxLength.max }} characters!</span
+          >
         </label>
         <label for="password2"
           >Confirm password:
@@ -58,17 +86,29 @@
             placeholder="confirm your password"
             v-model="password2"
           />
+          <span v-if="!$v.password2.required && $v.password2.$dirty"
+            >Repeated password is missing!</span
+          >
+          <!-- <span v-if="!$v.password2.sameAs && $v.password2.$dirty"
+            >Wrong password confirmation!</span
+          > -->
         </label>
         <button type="submit" @click="submit">Create account</button>
-        <span v-if="!this.submit" class="error"
-          >Greška! Lozinke nisu iste!</span
-        >
       </form>
     </div>
   </div>
 </template>
 
 <script>
+import {
+  required,
+  minLength,
+  maxLength,
+  alpha,
+  email,
+  // sameAs,
+} from "vuelidate/lib/validators";
+
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 
@@ -76,16 +116,45 @@ export default {
   data() {
     return {
       error: null,
+      firstname: "",
+      lastname: "",
+      email: "",
+      password: "",
+      password2: "",
     };
+  },
+  validations: {
+    firstname: {
+      required,
+      alpha,
+    },
+    lastname: {
+      required,
+      alpha,
+    },
+    email: {
+      required,
+      email,
+    },
+    password: {
+      required,
+      minLength: minLength(6),
+      maxLength: maxLength(20),
+    },
+    // fix confirm password bug
+    password2: {
+      required,
+      // sameAsPassword: sameAs('password')
+    },
   },
   methods: {
     async submit() {
-      if (
-        this.password.length > 0 &&
-        this.password2 > 0 &&
-        this.password === this.password2
-      ) {
-        console.log(this.email, this.password);
+      this.$v.$touch();
+
+      if (!this.$v.$invalid) {
+        console.log(
+          `Firstname: ${this.firstname}, Lastname: ${this.lastname}, Email: ${this.email}, Password: ${this.password}`
+        );
         await firebase
           .auth()
           .createUserWithEmailAndPassword(this.email, this.password)
@@ -95,14 +164,14 @@ export default {
                 displayName: this.firstname,
               })
               .then(() => {
-                this.$router.replace("/data");
+                alert('Form successfully submitted.')
+                this.$router.replace("/");
               });
           })
           .catch((err) => {
             this.error = err.message;
           });
-      } else {
-        console.log("Greška! Lozinke nisu iste!");
+
       }
     },
   },
@@ -253,6 +322,10 @@ form button:hover:after {
   opacity: 1;
   margin-left: 8px;
   transition: ease-out 0.2s;
+}
+// add style to feedback messages
+span{
+  color: #c84b31;
 }
 @media screen and (max-width: 992px) {
   .register-information {
