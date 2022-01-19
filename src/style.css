@@ -399,6 +399,7 @@ header nav a:hover {
   bottom: 0;
   left: 50%;
   margin-left: -3px;
+  border-radius: 6px;
 }
 .goal-left,
 .goal-right {
