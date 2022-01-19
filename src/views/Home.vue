@@ -42,22 +42,20 @@
                 <h4>Welcome back!</h4>
                 <p>Enter your credentials to access your account.</p>
                 <div class="form-element">
-                  <label for="email" id="nonselectable">Email</label>
+                  <label for="email">Email</label>
                   <input
                     type="text"
                     placeholder="Enter your email"
                     name="email"
-                    id="nonselectable"
                     required
                   />
                 </div>
                 <div class="form-element">
-                  <label for="password" id="nonselectable">Password</label>
+                  <label for="password">Password</label>
                   <input
                     type="password"
                     placeholder="Enter your password"
                     name="password"
-                    id="nonselectable"
                     required
                   />
                 </div>
@@ -65,7 +63,6 @@
                   <button
                     type="submit"
                     class="login"
-                    id="nonselectable"
                     disabled
                   >
                     Login
