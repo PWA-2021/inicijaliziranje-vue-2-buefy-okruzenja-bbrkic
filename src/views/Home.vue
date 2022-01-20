@@ -78,8 +78,14 @@
                       placeholder="Enter your email"
                       name="email"
                       v-model="email"
-                      required
                     />
+                    <!-- <span
+                      v-if="
+                        (!$v.email.required || !$v.email.email) &&
+                        $v.email.$dirty
+                      "
+                      >Valid Email is missing!</span
+                    > -->
                   </div>
                   <div class="form-element">
                     <label for="password">Password</label>
@@ -88,15 +94,15 @@
                       placeholder="Enter your password"
                       name="password"
                       v-model="password"
-                      required
                     />
+                    <!-- <span v-if="!$v.password.required && $v.password.$dirty"
+                      >Password is missing!</span
+                    > -->
                   </div>
                   <div class="form-element">
-                    <router-link to="/captaincoin" target="self"
-                      ><button type="submit" class="login">
-                        Login
-                      </button></router-link
-                    >
+                    <button type="submit" class="login" @click="submitLogin">
+                      Login
+                    </button>
                   </div>
                 </form>
               </div>
@@ -342,6 +348,13 @@ export default {
     };
   },
   validations: {
+    email: {
+      required,
+      email,
+    },
+    password: {
+      required,
+    },
     firstname: {
       required,
       alpha,
@@ -391,21 +404,24 @@ export default {
       this.toEmail = "";
       this.message = "";
     },
-
     gotoContact() {
       let route = this.$router.resolve({ path: "/Home.vue" });
       window.open(route.href);
     },
-    submit() {
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(this.email, this.password)
-        .then(function () {
-          this.$router.replace({ name: "data" });
-        })
-        .catch(function (err) {
-          this.error = err.message;
-        });
+    submitLogin() {
+      this.$v.$touch();
+
+      if (!this.$v.$invalid) {
+        firebase
+          .auth()
+          .signInWithEmailAndPassword(this.email, this.password)
+          .then(() => {
+            this.$router.push("/captaincoin");
+          })
+          .catch((error) => {
+            alert(error.message);
+          });
+      }
     },
   },
   mounted() {
