@@ -612,6 +612,10 @@ p::before {
   margin-left: 5%;
   font-size: 20px;
 }
+.contacts span{
+  color: #c84b31;
+  font-weight: bold;
+}
 .contacts form input:focus,
 .contacts textarea:focus {
   border-color: #346751;
