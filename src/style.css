@@ -637,7 +637,7 @@ p::before {
 }
 .toTop {
   opacity: 1;
-  bottom: 20px;
+  bottom: 20px; 
 }
 .toTop:active {
   transform: scale(0.95);
