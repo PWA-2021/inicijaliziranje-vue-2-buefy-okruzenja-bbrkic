@@ -11,6 +11,10 @@ import "firebase/compat/auth";
 import "firebase/compat/firestore";
 import Vuelidate from "vuelidate";
 
+Vue.use(Buefy);
+Vue.use(VueTypedJs);
+Vue.use(Vuelidate);
+
 const firebaseConfig = {
   apiKey: "AIzaSyDEp2GnsZW26AMrQ5uvBDbqdccGlWZIzTU",
   authDomain: "captaincoin-169ac.firebaseapp.com",
@@ -29,18 +33,11 @@ firebase.auth().onAuthStateChanged((user) => {
   store.dispatch("fetchUser", user);
 });
 
-Vue.config.productionTip = false;
-Vue.use(Buefy);
-Vue.use(VueTypedJs);
-Vue.use(Vuelidate);
-
 new Vue({
   router,
   store,
   render: (h) => h(App),
 }).$mount("#app");
-
-Vue.config.productionTip = false;
 
 // ANIMATED MENU
 let bar1 = document.querySelector(".bar1");
@@ -89,3 +86,5 @@ window.addEventListener("scroll", () => {
     toTop.classList.remove("active");
   }
 });
+
+Vue.config.productionTip = false;
