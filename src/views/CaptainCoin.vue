@@ -466,7 +466,6 @@ export default {
   margin-left: 20%;
   height: 122%;
   background-color: #e7e7e7;
-  overflow: hidden;
 }
 .top-buttons {
   display: flex;
@@ -490,6 +489,8 @@ export default {
   padding: 3%;
   position: relative;
   top: 47.8px;
+  overflow: hidden;
+  background-color: #e7e7e7;
 }
 .frames section {
   background-color: #ffffff;
