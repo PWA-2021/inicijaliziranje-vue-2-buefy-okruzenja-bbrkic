@@ -89,9 +89,9 @@
           <span v-if="!$v.password2.required && $v.password2.$dirty"
             >Repeated password is missing!</span
           >
-          <!-- <span v-if="!$v.password2.sameAs && $v.password2.$dirty"
+          <span v-if="!$v.password2.sameAs && $v.password2.$dirty"
             >Wrong password confirmation!</span
-          > -->
+          >
         </label>
         <button type="submit" @click="submit">Create account</button>
       </form>
@@ -106,7 +106,7 @@ import {
   maxLength,
   alpha,
   email,
-  // sameAs,
+  sameAs,
 } from "vuelidate/lib/validators";
 
 import firebase from "firebase/compat/app";
@@ -141,10 +141,9 @@ export default {
       minLength: minLength(6),
       maxLength: maxLength(20),
     },
-    // fix confirm password bug
     password2: {
       required,
-      // sameAsPassword: sameAs('password')
+      sameAs: sameAs("password"),
     },
   },
   methods: {
@@ -164,14 +163,13 @@ export default {
                 displayName: this.firstname,
               })
               .then(() => {
-                alert('Form successfully submitted.')
+                alert("Form successfully submitted.");
                 this.$router.replace("/");
               });
           })
           .catch((err) => {
             this.error = err.message;
           });
-
       }
     },
   },
@@ -324,8 +322,11 @@ form button:hover:after {
   transition: ease-out 0.2s;
 }
 // add style to feedback messages
-span{
+span {
   color: #c84b31;
+}
+span.error {
+  display: none;
 }
 @media screen and (max-width: 992px) {
   .register-information {
