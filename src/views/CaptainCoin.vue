@@ -28,7 +28,7 @@
     <div class="wrapper-content">
       <div class="horizontal-navbar">
         <a href="#">CaptainCoin</a>
-        <i class="fas fa-user-circle"></i>
+        <i class="fas fa-sign-out-alt"></i>
       </div>
 
       <!-- DASHBOARD -->
