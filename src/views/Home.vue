@@ -1,5 +1,6 @@
 <template>
   <div id="home">
+    <a name="top"></a>
     <div class="main-bg-image"></div>
     <main>
       <header :class="{ change_color: scrollPosition > 60 }">
@@ -305,7 +306,7 @@
         </article>
       </div>
     </div>
-    <a href="#" class="toTopBefore" :class="{ toTop: scrollPosition > 60 }">
+    <a href="#top" class="toTopBefore" :class="{ toTop: scrollPosition > 60 }">
       <i class="fas fa-arrow-circle-up"></i>
     </a>
   </div>
