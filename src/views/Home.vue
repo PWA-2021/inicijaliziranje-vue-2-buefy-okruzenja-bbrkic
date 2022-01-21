@@ -243,47 +243,35 @@
               <div class="element">
                 <label
                   >Firstname
-                  <input type="text" v-model="firstname" name="firstname" />
+                  <input
+                    type="text"
+                    v-model="firstname"
+                    name="firstname"
+                    required
+                  />
                 </label>
-                <span v-if="!$v.firstname.required && $v.firstname.$dirty"
-                  >Firstname is missing!</span
-                >
-                <span v-if="!$v.firstname.alpha && $v.firstname.$dirty"
-                  >Invalid input!</span
-                >
               </div>
               <div class="element">
                 <label
                   >Lastname
-                  <input type="text" v-model="lastname" name="lastname" />
+                  <input
+                    type="text"
+                    v-model="lastname"
+                    name="lastname"
+                    required
+                  />
                 </label>
-                <span v-if="!$v.lastname.required && $v.lastname.$dirty"
-                  >Lastname is missing!</span
-                >
-                <span v-if="!$v.lastname.alpha && $v.lastname.$dirty"
-                  >Invalid input!</span
-                >
               </div>
             </div>
             <label
               >Email
-              <input type="email" v-model="toEmail" name="toEmail" />
+              <input type="email" v-model="toEmail" name="toEmail" required />
             </label>
-            <span
-              v-if="
-                (!$v.toEmail.required || !$v.toEmail.email) && $v.toEmail.$dirty
-              "
-              >Valid Email is missing!</span
-            >
             <label for="message"
               >Message
               <textarea name="message" v-model="message" cols="30" rows="10">
               </textarea>
             </label>
-            <span v-if="!$v.message.required && $v.message.$dirty"
-              >Message is missing!</span
-            >
-
             <input type="submit" value="submit" @click="sendEmail" />
           </form>
         </article>
@@ -324,8 +312,6 @@ import emailjs from "emailjs-com";
 import firebase from "../views/Home.vue";
 import userService from "../services/usersService";
 
-import { required, alpha, email } from "vuelidate/lib/validators";
-
 export default {
   name: "home",
   components: {},
@@ -347,30 +333,6 @@ export default {
       message: "",
     };
   },
-  validations: {
-    email: {
-      required,
-      email,
-    },
-    password: {
-      required,
-    },
-    firstname: {
-      required,
-      alpha,
-    },
-    lastname: {
-      required,
-      alpha,
-    },
-    toEmail: {
-      required,
-      email,
-    },
-    message: {
-      required,
-    },
-  },
   methods: {
     updateScroll() {
       this.scrollPosition = window.scrollY;
@@ -378,36 +340,32 @@ export default {
 
     // CONTACT US FORM
     async sendEmail(e) {
-      this.$v.$touch();
-
-      if (!this.$v.$invalid) {
-        try {
-          emailjs.sendForm(
-            "service_lqivm2d",
-            "template_cmkzz3q",
-            e.target,
-            "user_HAvXbKaVfznM5LVHE1Tzs",
-            {
-              firstname: this.firstname,
-              lastname: this.lastname,
-              toEmail: this.toEmail,
-              message: this.message,
-            }
-          );
-        } catch (error) {
-          console.log({ error });
-        }
+      try {
+        emailjs.sendForm(
+          "service_lqivm2d",
+          "template_cmkzz3q",
+          e.target,
+          "user_HAvXbKaVfznM5LVHE1Tzs",
+          {
+            firstname: this.firstname,
+            lastname: this.lastname,
+            toEmail: this.toEmail,
+            message: this.message,
+          }
+        );
+        // FIX CLEARING DATA AFTER SUBMIT CLICK BUG
+        this.firstname = "";
+        this.lastname = "";
+        this.toEmail = "";
+        this.message = "";
+      } catch (error) {
+        console.log({ error });
       }
-      // FIX CLEARING DATA AFTER SUBMIT CLICK BUG
-      this.firstname = "";
-      this.lastname = "";
-      this.toEmail = "";
-      this.message = "";
     },
-    gotoContact() {
-      let route = this.$router.resolve({ path: "/Home.vue" });
-      window.open(route.href);
-    },
+    // gotoContact() {
+    //   let route = this.$router.resolve({ path: "/Home.vue" });
+    //   window.open(route.href);
+    // },
     submitLogin() {
       this.$v.$touch();
 
