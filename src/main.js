@@ -9,11 +9,9 @@ import VueTypedJs from "vue-typed-js";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
-import Vuelidate from "vuelidate";
 
 Vue.use(Buefy);
 Vue.use(VueTypedJs);
-Vue.use(Vuelidate);
 
 const firebaseConfig = {
   apiKey: "AIzaSyDEp2GnsZW26AMrQ5uvBDbqdccGlWZIzTU",
