@@ -69,8 +69,11 @@
               <div class="text">
                 <h4>Welcome back!</h4>
                 <p>Enter your credentials to access your account.</p>
-                <form action="#" @submit.prevent="submit">
-                  <span v-if="error" class="error">{{ error }}</span>
+                <form
+                  action="#"
+                  @submit.prevent="submitLogin"
+                  :class="{ error: v$.email.$errors.length }"
+                >
                   <div class="form-element">
                     <label for="email">Email</label>
                     <input
@@ -79,13 +82,14 @@
                       name="email"
                       v-model="email"
                     />
-                    <!-- <span
-                      v-if="
-                        (!$v.email.required || !$v.email.email) &&
-                        $v.email.$dirty
-                      "
-                      >Valid Email is missing!</span
-                    > -->
+
+                    <div
+                      class="input-errors"
+                      v-for="error of v$.email.$errors"
+                      :key="error.$uid"
+                    >
+                      <div class="error-msg">{{ error.$message }}</div>
+                    </div>
                   </div>
                   <div class="form-element">
                     <label for="password">Password</label>
@@ -95,10 +99,15 @@
                       name="password"
                       v-model="password"
                     />
-                    <!-- <span v-if="!$v.password.required && $v.password.$dirty"
-                      >Password is missing!</span
-                    > -->
+                    <div
+                      class="input-errors"
+                      v-for="error of v$.password.$errors"
+                      :key="error.$uid"
+                    >
+                      <div class="error-msg">{{ error.$message }}</div>
+                    </div>
                   </div>
+
                   <div class="form-element">
                     <button type="submit" class="login" @click="submitLogin">
                       Login
@@ -309,13 +318,33 @@
 <script>
 //import data from "../views/Home.vue";
 import emailjs from "emailjs-com";
-import firebase from "../views/Home.vue";
 import userService from "../services/usersService";
+import useVuelidate from "@vuelidate/core";
+import { required, email } from "@vuelidate/validators";
+
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
 
 export default {
   name: "home",
   components: {},
 
+  setup() {
+    return {
+      v$: useVuelidate(),
+    };
+  },
+  validations() {
+    return {
+      email: {
+        required,
+        email,
+      },
+      password: {
+        required,
+      },
+    };
+  },
   data() {
     return {
       users: [],
@@ -366,20 +395,20 @@ export default {
     //   let route = this.$router.resolve({ path: "/Home.vue" });
     //   window.open(route.href);
     // },
-    submitLogin() {
-      this.$v.$touch();
+    async submitLogin() {
+      // this.$v.$touch();
+      const isValid = await this.v$.$validate();
+      if (!isValid) return;
 
-      if (!this.$v.$invalid) {
-        firebase
-          .auth()
-          .signInWithEmailAndPassword(this.email, this.password)
-          .then(() => {
-            this.$router.push("/captaincoin");
-          })
-          .catch((error) => {
-            alert(error.message);
-          });
-      }
+      await firebase
+        .auth()
+        .signInWithEmailAndPassword(this.email, this.password)
+        .then(() => {
+          this.$router.push("/captaincoin");
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
     },
   },
   mounted() {
