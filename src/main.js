@@ -27,6 +27,9 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
+const firestore = firebase.firestore();
+export { firestore };
+
 firebase.auth().onAuthStateChanged((user) => {
   store.dispatch("fetchUser", user);
 });
@@ -64,16 +67,6 @@ document
     document.querySelector(".popup").classList.remove("active");
     document.querySelector(".dark-bg").classList.remove("active");
   });
-
-// POPUP EXPENSES
-// document.querySelector("#pop-expenses").addEventListener("click", function () {
-//   document.querySelector(".popup-expenses").classList.add("active");
-// });
-// document
-//   .querySelector(".popup-expenses .fa-times-circle")
-//   .addEventListener("click", function () {
-//     document.querySelector(".popup-expenses").classList.remove("active");
-//   });
 
 // SCROLL TO TOP
 const toTop = document.querySelector(".to-top");
