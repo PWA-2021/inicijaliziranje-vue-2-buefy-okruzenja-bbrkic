@@ -156,7 +156,7 @@
           <h1>Add expenses</h1>
           <hr class="heading-underline" />
           <p>Tell us all about your recent spendings.</p>
-          <form action="" class="form-expense" @submit.prevent="submit">
+          <form action="" class="form-expense" @submit.prevent="submitExpenses">
             <label for="categories"
               >Select category:<br />
               <select
@@ -281,9 +281,9 @@
 </template>
 
 <script>
-import json from "@/assets/to-do.json";
 import isActive from "../views/CaptainCoin.vue";
-// import data from "../views/CaptainCoin.vue";
+import json from "@/assets/to-do.json";
+import firestore from "../main.js";
 
 export default {
   data: function () {
@@ -296,6 +296,11 @@ export default {
       current: "",
       operator: null,
       operatorClicked: false,
+
+      // add expenses
+      category: "",
+      description: "",
+      cost: "",
     };
   },
   methods: {
@@ -339,6 +344,8 @@ export default {
       isActive = false;
       // this.current = "";
     },
+
+    // CALCULATOR FUNCTIONS
     clear() {
       this.current = "";
     },
@@ -393,6 +400,16 @@ export default {
     mounted: function () {
       console.log(this.expenses);
     },
+  },
+
+  submitExpenses() {
+    let userExpense = {
+      category: this.category,
+      description: this.description,
+      cost: this.cost,
+    };
+
+    firestore.collection("userExpenses").add(userExpense);
   },
 };
 </script>
